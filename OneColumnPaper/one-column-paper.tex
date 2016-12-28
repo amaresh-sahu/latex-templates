@@ -1,11 +1,10 @@
-\documentclass[10pt,notitlepage]{article}
+\documentclass[11pt,notitlepage]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{array}
-\usepackage[backend=biber,citestyle=numeric-comp,style=nature,sorting=none,natbib=true,firstinits=true]{biblatex}
 \usepackage{bm}
-\usepackage[font={small,it}]{caption}
+\usepackage[font={footnotesize}]{caption}
 \usepackage{enumerate}
 \usepackage{fancyhdr}
 \usepackage{fixltx2e}
@@ -43,10 +42,6 @@
 \title{\bfseries{\Large{\sffamily A One-Column Latex Template}}}
 \author{\large{\sffamily Amaresh Sahu}}
 \date{\normalsize \sffamily \today}
-
-% bibliography
-\addbibresource{../refs.bib}
-
 
 
 
@@ -168,9 +163,10 @@ Run
 to compile the PDF.
 Every time you modify the \verb+refs.bib+ bibliography file, you will also be prompted to run
 \begin{verbatim}
-	biber one-column-paper.bcf
+	bibtex one-column-paper.aux
 \end{verbatim}
 to correctly format the bibliography.
+We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
 
 
 
@@ -192,8 +188,9 @@ An interesting paper on microfluidic fuel cells could be found in \cite{vigolo-s
 %
 
 \newpage
-\section*{References}
-{\footnotesize \printbibliography[heading=none]}
+\addcontentsline{toc}{section}{References}
+\bibliography{../refs}
+\bibliographystyle{abbrv}
 
 
 
