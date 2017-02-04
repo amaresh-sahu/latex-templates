@@ -1,0 +1,138 @@
+\documentclass[10pt,notitlepage,twocolumn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage[backend=biber,style=numeric-comp,sorting=none,natbib=true,firstinits=true]{biblatex}
+\usepackage{bm}
+\usepackage[font={small,it}]{caption}
+\usepackage{enumerate}
+\usepackage{fixltx2e}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=MidnightBlue,linkcolor=BrickRed,breaklinks=true]{hyperref}
+\usepackage{mathrsfs}
+\usepackage{titlesec}
+\usepackage{wrapfig}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{xy}
+
+\pdfpagewidth 8.5in
+\pdfpageheight 11in 
+\topmargin 0in
+\evensidemargin 0in
+\oddsidemargin 0in
+\headheight 00pt
+\headsep 0.00in
+\topskip 0in
+\textheight 9.0in
+\textwidth 6.5in
+\footskip 0.5in
+\parskip 0in
+\parindent 0.2in
+
+\pagenumbering{arabic}
+\setlength{\columnsep}{0.25in}
+
+
+
+\title{\bfseries{\Large{\sffamily Title Here}}}
+\author{\large{\sffamily Amaresh Sahu}}
+\date{\footnotesize \sffamily \today}
+
+% bibliography
+% \addbibresource{../refs.bib}
+
+%
+% *** CUSTOM COMMANDS
+%
+
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+
+
+% Section Header Formatting
+\titleformat{\section}
+{\centering \normalfont \large \bfseries}
+{\thesection.\,}
+{0pt}
+{}
+
+\titleformat{\subsection}
+{\normalfont \bfseries}
+{\thesubsection\,\,}
+{0pt}
+{}
+
+\titleformat{\subsubsection}
+{\normalfont \itshape}
+{\S \thesubsubsection.\,\,}
+{0pt}
+{}
+
+
+
+
+
+\begin{document}
+% \thispagestyle{empty}
+
+
+
+%
+% *** TITLE & ABSTRACT
+%
+
+\renewcommand{\abstractname}{}
+\twocolumn[
+	\begin{@twocolumnfalse}
+		\maketitle
+		\begin{abstract}
+			\sffamily
+			Abstract here
+		\end{abstract}
+		\vspace{20pt}
+	\end{@twocolumnfalse}
+]
+
+
+
+%
+% Introduction
+%
+
+\section{Introduction}
+
+An introduction.
+
+\subsection{Subsection}
+
+\subsubsection{Subsubsection}
+
+
+
+%
+% CONCLUSIONS
+%
+
+\section{Conclusions}
+
+Some conclusions
+
+
+
+%*******************************%
+%								%
+%	 		Bibliography		%
+%								%
+%*******************************%
+
+%\newpage
+%\section*{References}
+%{\footnotesize \printbibliography[heading=none]}
+
+
+
+
+\end{document}
