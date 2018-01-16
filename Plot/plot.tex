@@ -1,0 +1,33 @@
+\documentclass[border=10pt]{standalone}
+\usepackage{bm}
+\usepackage{verbatim}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+
+
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{axis}[
+		xlabel = {$x$-axis},
+		ylabel = {$y$-axis},
+		legend pos = north west 
+	]
+
+	% import data from a CSV file
+	\addplot[
+		thick,
+		color=blue!70,
+		mark=square] table[x=x1, y=y1]{data.csv};
+	\addlegendentry{1}
+
+	\addplot[
+		thick,
+		color=red!70,
+		mark=square] table[x=x1, y=y2]{data.csv};
+	\addlegendentry{2}
+
+	\end{axis}
+\end{tikzpicture}
+\end{document}
+
