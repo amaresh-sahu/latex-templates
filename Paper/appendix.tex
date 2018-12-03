@@ -1,0 +1,86 @@
+
+
+
+%
+% *** Introduction
+%
+
+\section{Introduction}
+
+Simply start typing here.
+Starting on a new line in the \verb+.tex+ file doesn't start a new line in the pdf document - rather, you'll need to specifically tell latex you want a new line.
+\bigskip
+
+This can be done like this.
+Notice Latex automatically takes care of the paragraph tabbing.
+You can also add in equations by saying
+\begin{equation} \label{eq:intro-equation}
+	e^{i\pi} + 1 = 0,
+\end{equation}
+and reference them with \eqref{eq:intro-equation}.
+
+
+
+%
+% *** Mathematical Preliminaries
+%
+
+\section{Mathematical Preliminaries} \label{sec:math-prelims}
+
+There are several options into how to structure your paper.
+For example, sections.
+The current section we are in, Section \ref{sec:math-prelims}, is about mathematical preliminaries
+
+
+
+%
+% *** Geometry
+%
+
+\subsection{Geometry}
+
+We can use subsections.
+
+
+
+%
+% *** Differential Geometry
+%
+
+\subsubsection{Differential Geometry}
+
+Finally, we can use ``subsubsections'' for even more granular levels of detail.
+
+
+
+%
+% *** Compiling the PDF
+%
+
+\section{Compiling the PDF}
+
+I use the command line to compile my PDF files.
+Run
+\begin{verbatim}
+	xelatex one-column-paper.tex
+\end{verbatim}
+to compile the PDF.
+Every time you modify the \verb+refs.bib+ bibliography file, you will also be prompted to run
+\begin{verbatim}
+	bibtex one-column-paper.aux
+\end{verbatim}
+to correctly format the bibliography.
+We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
+
+
+
+%
+% *** Misc
+%
+
+\section{Misc}
+
+Note that starting from the second page of the paper onwards, pages have a heading at the top of the page.
+We can cite a paper as long as it in our \verb+refs.bib+ file.
+An interesting paper on microfluidic fuel cells could be found in \cite{vigolo-stone-rsc-2014}.
+

@@ -1,0 +1,197 @@
+% written by Amaresh Sahu
+% 02 Dec. 2018
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%					  Style file, for one-column formatting						%%
+%%																				%%
+%% **************************************************************************** %%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{one-column}
+	[2017/05/21 v0.01 LaTeX package for one-column formatting]
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%									Required Packages							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% equivalent of 'usepackage' in tex file
+
+\RequirePackage{amsmath}							% math mode enhancements
+\RequirePackage{amssymb}							% extended symbol collection
+\RequirePackage{amsthm}								% theorem-like structures
+\RequirePackage[title]{appendix}					% appendix, goes in table of contents
+\RequirePackage{array}								% tabular environment in math mode
+\RequirePackage{bm}									% slanted bold letters
+\RequirePackage[font={small},						% figure and table captions
+				margin=20pt]{caption}				% small font size, 20pt margins
+\RequirePackage{cite}								% reference citations (bibtex)
+\RequirePackage{comment}							% comment large blocks of text
+\RequirePackage[nodayofweek]{datetime}				% format \today macro
+\RequirePackage{dcolumn}							% align decimal point in table columns
+\RequirePackage{enumerate}							% lists
+\RequirePackage{float}								% position figures and captions
+\RequirePackage[T1]{fontenc}						% 8-bit font encoding: glyphs, accents
+\RequirePackage{graphicx}							% include figures
+\RequirePackage[colorlinks=true,					% color links
+				citecolor=MidnightBlue,				% color for citations
+				linkcolor=BrickRed,					% color for links (sections, equations)
+				urlcolor=MidnightBlue,				% color URLs
+				breaklinks=true,					% allow links to break over lines
+				pdfauthor=Amaresh~Sahu,
+				pdftitle=One~Column~Paper,
+				pdfsubject=Latex~Templates,
+				%bookmarksopen,						% all bookmarks open in pdf index
+				bookmarksdepth=3]{hyperref}			% set depth of bookmarks in pdf index
+\RequirePackage{lipsum}								% dummy text
+\RequirePackage{listings}							% algorithm & source code environment
+\RequirePackage{mathrsfs}							% \mathscr 
+\RequirePackage{mathtools}							% needed for \shortintertext command
+\RequirePackage{multicol}							% multi-column environment
+\RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{sectsty}							% center section headings
+\RequirePackage{stmaryrd}							% \llbracket and \rrbracket
+\RequirePackage{subcaption}							% sub-figures in captions
+\RequirePackage{textgreek}							% Greek letters in bibliography
+\RequirePackage{titlesec}							% section title formatting
+\RequirePackage{tocloft}							% table of contents formatting
+\RequirePackage{verbatim}							% block comments, code display
+\RequirePackage{wrapfig}							% wrap text around smaller figures
+\RequirePackage[usenames,dvipsnames]{xcolor}		% load all latex colors
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%						Resources: Figures, Custom Commands						%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% path to figures
+\graphicspath{{Figures/}}
+
+
+%% custom commands
+\input{custom-commands.tex}
+
+
+%% date (\today) formatting
+\newdateformat{mydate}{{\THEDAY}{ }\shortmonthname[\THEMONTH]. \THEYEAR}
+\mydate
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Page Formatting								%%
+%%																				%%
+%% **************************************************************************** %%
+
+\pdfpagewidth 8.5in
+\pdfpageheight 11in 
+\topmargin 0in
+\evensidemargin 0.25in
+\oddsidemargin 0.25in
+\headheight 00pt
+\headsep 0.25in
+\topskip 0in
+\textheight 8.5in
+\textwidth 6.0in
+\footskip 0.5in
+\parskip 0in
+\parindent 0.25in
+
+% have \paragraph{...} create a new line after the heading
+% from https://tex.stackexchange.com/a/5040
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%							Table of Content Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% table of contents customization: center toc title
+% from https://tex.stackexchange.com/a/142451
+\renewcommand{\contentsname}{\hfill\Large\bfseries Contents \hfill}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+
+%% counter
+%\setcounter{tocdepth}{1}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Footnote Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% change footnote markers from numbers to symbols
+% from https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+% change the order of footnote characters
+% from https://tex.stackexchange.com/a/78223
+\makeatletter
+\def\@fnsymbol#1{
+	\ensuremath{\ifcase#1\or
+	\ddagger\or			% 1
+	\mathsection\or		% 2
+	\mathflat\or		% 3
+	\dagger\or			% 4
+	*\or				% 5
+	\|\or				% 6
+	\ddagger\ddagger\or	% 7
+	\dagger\dagger\or	% 8
+	**					% 9
+	\else\@ctrerr\fi}}
+\makeatother
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 								  Algorithm Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% color code snippets with the lstlisting environment
+% from https://stackoverflow.com/a/3175141
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Algorithm}
+\lstset{frame=shadowbox,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\footnotesize\color{black!65},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	backgroundcolor=\color{lightgray!15}
+}
+
+
+
+\endinput

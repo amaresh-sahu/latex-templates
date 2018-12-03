@@ -1,0 +1,112 @@
+
+
+
+%
+% *** Introduction
+%
+
+\section{Introduction}
+
+If you're interested, take a look at one of my first papers \cite{sahu-mandadapu-pre-2017}.
+\lipsum[2]
+
+
+
+%
+% *** First Section
+%
+
+\section{First Section} \label{sec:first_section}
+
+\lipsum[3]
+
+
+
+%
+% *** First Subsection
+%
+
+\subsection{First Subsection}
+
+\lipsum[4]
+
+
+
+%
+% *** First Sub-subsection
+%
+
+\subsubsection{First Sub-subsection}
+
+\lipsum[5]
+
+
+
+%
+% *** Paragraph
+%
+
+\paragraph{Paragraph}
+
+\lipsum[6]
+
+
+
+%
+% *** Compiling the PDF
+%
+
+\section{Compiling the PDF}
+
+I use the command line to compile my PDF files.
+Run
+\begin{verbatim}
+	xelatex paper.tex
+\end{verbatim}
+to compile the PDF.
+Every time you modify the \verb+refs.bib+ bibliography file, you will need to run
+\begin{verbatim}
+	xelatex paper.tex
+	bibtex paper.aux
+	xelatex paper.tex
+	xelatex paper.tex
+\end{verbatim}
+to correctly format the bibliography.
+We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
+
+
+
+%
+% *** Code Formatting
+%
+
+\section{Code Formatting}
+
+Display algorithms as follows.
+
+\begin{lstlisting}[caption={\texttt{C++} pseudocode of an algorithm}]
+ // mesh and basis function calculations
+ generate_mesh(); generate_basis_functions();
+
+ for (time_index = 0; time_index < num_time_steps; ++time_index) {
+
+	initialize_u_vector(); initialize_delta_u();
+
+	while (norm(delta_u) > newton_tolerance) {
+		// initialize global residual vector and stiffness matrix
+		initialize_r_vector(); initialize_K_matrix();
+
+		assemble_K_matrix();
+		assemble_r_vector();
+
+		// apply boundary conditions
+		apply_boundary_conditions(K_matrix, r_vector);
+
+		solve_delta_u(delta_u, K_matrix, r_vector);
+		u_vector += delta_u;
+	}
+
+	output_u_vector();
+ }
+\end{lstlisting}
+

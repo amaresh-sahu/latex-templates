@@ -1,0 +1,114 @@
+\documentclass[11pt,twoside,notitlepage]{article}
+\usepackage{one-column}
+
+
+
+\begin{document}
+
+
+	%
+	% *** INITIAL FORMATTING
+	%
+
+	\begin{center}
+		% *** title *** %
+		{\textbf{
+			\Large{The nice, long, descriptive title of the paper goes here}
+		}} \\
+		\vspace{0.11in}
+		% *** subtitle *** %
+		{\textbf{
+			\large{I. If a subtitle is needed, it goes here, otherwise remove}
+		}} \\
+		\vspace{0.21in}
+
+		% *** authors *** %
+		{\small
+			Amaresh Sahu,$^{1, \ddag}$
+			Author 2,$^{1, \S}$
+			and Author 3$^{1,2, \dag}$ \\
+		}
+		\vspace{0.25in}
+
+		% *** affiliations *** %
+		\footnotesize{
+			{
+				$^1$
+				Department of Chemical \& Biomolecular Engineering,
+				University of California, Berkeley, CA 94720, USA
+				\\[3pt]
+				$^2$
+				Some other affiliation
+				\\
+			}
+		}
+	\end{center}
+
+
+
+	\vspace{13pt}
+	%
+	% *** Abstract
+	%
+
+	\begin{abstract}
+		Abstract goes here.
+		\lipsum[1]
+	\end{abstract}
+	\vspace{15pt}
+				   
+
+
+	% author contact
+
+	\noindent\rule{4.6cm}{0.4pt}
+
+	\small
+	\noindent{$\ddag$ amaresh.sahu\textit{@}berkeley.edu \\
+		$\S$    address.two\textit{@}affiliation.edu \\
+		$\dag$  address.three\textit{@}affiliation.edu
+	}
+
+
+
+	\vspace{25pt}
+	%
+	% *** TABLE OF CONTENTS
+	%
+
+	{ \hypersetup{linkcolor=black} \tableofcontents }
+	\vspace{20pt}
+
+
+
+	%
+	% *** CONTENT 
+	%
+
+	\input{content}
+
+
+
+	%
+	% *** APPENDIX
+	%
+
+	%\begin{appendices}
+	%	\numberwithin{equation}{section}
+	%	\input{appendix}
+	%\end{appendices}
+
+
+
+	%
+	% *** REFERENCES
+	%
+
+	%\newpage
+	\addcontentsline{toc}{section}{References}
+	\bibliographystyle{bibStyle}
+	\bibliography{refs}
+
+
+
+\end{document}
