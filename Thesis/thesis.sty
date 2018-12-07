@@ -1,0 +1,334 @@
+% Written by Amaresh Sahu
+% 21 May 2017
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%						Style file, for thesis formatting						%%
+%%																				%%
+%% **************************************************************************** %%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{thesis}
+	[2017/05/21 v0.01 LaTeX package for thesis formatting]
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%									Required Packages							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% equivalent of 'usepackage' in tex file
+
+\RequirePackage{amsfonts}							% for \mathfrak
+\RequirePackage{amsmath}							% math mode enhancements
+\RequirePackage{amssymb}							% extended symbol collection
+\RequirePackage{amsthm}								% theorem-like structures
+\RequirePackage[toc,page]{appendix}					% appendix, goes in table of contents
+\RequirePackage{array}								% tabular environment in math mode
+\RequirePackage[backend=biber,						% biber backend
+				citestyle=numeric-comp,				% compact numerical citations in text
+				style=nature,						% nature format in bibliography
+				refsection=chapter]{biblatex}		% bibliography after every chapter
+\RequirePackage{bm}									% slanted bold letters
+\RequirePackage{bold-extra}							% bold small caps letters
+\RequirePackage[font={small},						% figure and table captions
+				margin=20pt]{caption}				% add padding around caption
+\RequirePackage{changepage}							% required for the \adjustwidth option
+\RequirePackage{comment}							% comment large blocks of text
+\RequirePackage[nodayofweek]{datetime}				% format \today macro
+\RequirePackage{enumerate}							% lists
+\RequirePackage{esvect}								% vector arrows
+\RequirePackage{etoolbox}
+\RequirePackage{fancyhdr}							% top rule on each page
+\RequirePackage{float}								% position figures and captions
+\RequirePackage[T1]{fontenc}						% better glyph/accent encoding
+\RequirePackage{graphicx}							% include figures
+\RequirePackage[colorlinks=true,					% color links
+				citecolor=MidnightBlue,				% color for citations
+				linkcolor=BrickRed,					% color for links (sections, equations)
+				breaklinks=true,					% allow links to break over lines
+				pdfauthor=Amaresh~Sahu,
+				pdftitle=derivations,
+				pdfsubject=PhD~Thesis,
+				%bookmarksopen,						% all bookmarks open in pdf index
+				bookmarksdepth=2]{hyperref}			% set depth of bookmarks in pdf index
+\RequirePackage{listings}							% algorithm & source code environment
+\RequirePackage{mathrsfs}							% \mathscr 
+\RequirePackage{mathtools}							% needed for \shortintertext command
+\RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{sectsty}							% center section headings
+\RequirePackage{sidecap}							% side captions, should delete
+\RequirePackage{stmaryrd}							% \llbracket and \rrbracket
+\RequirePackage{subcaption}							% sub-figures in captions
+\RequirePackage{textgreek}							% Greek letters in bibliography
+\RequirePackage{titlesec}							% section title formatting
+\RequirePackage{tocloft}							% table of contents formatting
+\RequirePackage[fit]{truncate}						% truncate headers in fancyhdr
+\RequirePackage{verbatim}							% block comments, code display
+\RequirePackage{wrapfig}							% wrap text around smaller figures
+\RequirePackage[usenames,dvipsnames]{xcolor}		% load all latex colors
+\RequirePackage{tikz}								% latex drawing, must be after xcolor
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%				Resources: Bibliography, Figures, Custom Commands				%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% bibliography
+\addbibresource{refs.bib}
+
+
+%% path to figures
+\graphicspath{{../../Figures/}}
+
+
+%% custom commands
+\input{Content/custom-commands.tex}
+
+
+%% date (\today) formatting
+\newdateformat{mydate}{{\THEDAY}{ }\shortmonthname[\THEMONTH]. \THEYEAR}
+\mydate
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Page Formatting								%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% all customization done according to
+%% https://en.wikibooks.org/wiki/LaTeX/Page_Layout#Page_dimensions
+%% to see the layout: \usepackage{showframe}
+
+\topmargin	00pt		% space above header
+\headheight	14pt		% header height
+\headsep	15pt		% from header to top of text
+\footskip	32pt		% bottom of text to bottom of footer
+
+\parskip	00pt		% spacing after paragraph
+\parindent	15pt		% paragraph indent
+
+\evensidemargin	0.25in	% even margin (+1 in default)
+\oddsidemargin	0.25in	% odd  margin (+1 in default)
+\textheight		8.25in	% content height
+\textwidth		6.00in	% content width
+\marginparwidth	0.00in	% margin notes width
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%							Table of Content Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% title
+\renewcommand{\cfttoctitlefont}{\hfill \huge \bfseries}		% change toc title font
+\renewcommand{\cftaftertoctitle}{\hfill}					% center toc title
+\renewcommand\contentsname{Contents}						% rename toc title
+
+
+%% part
+\renewcommand{\cftpartfont}{\hfil \large \bfseries Part }	% in toc, 'part' is bold and center
+\cftpagenumbersoff{part}									% in toc, no page numbers for 'part'
+
+
+\setcounter{tocdepth}{1}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Title Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% center chapter titles
+\chapterfont{\centering}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Page Headers								%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% right now, we're going with the default formatting
+
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LE,RO]{\thepage}
+%\fancyhead[CE]{\leftmark}
+%\fancyhead[CO]{\rightmark}
+%\fancyhead[RE]{Ch. \thechapter}
+%\fancyhead[LO]{\S \thesection}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Footnote Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% change footnote markers from numbers to symbols
+% from https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+% change the order of footnote characters
+% from https://tex.stackexchange.com/a/78223
+\makeatletter
+\def\@fnsymbol#1{
+	\ensuremath{\ifcase#1\or
+	\ddagger\or			% 1
+	\mathsection\or		% 2
+	\mathflat\or		% 3
+	\dagger\or			% 4
+	*\or				% 5
+	\|\or				% 6
+	\ddagger\ddagger\or	% 7
+	\dagger\dagger\or	% 8
+	**					% 9
+	\else\@ctrerr\fi}}
+\makeatother
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%									Math Mode Formatting						%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% theorem and lemma definitions
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+%% increase line spacing in matrix environments
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+
+%% better circled text
+\newcommand*\circled[1]{
+	\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=1pt] (char) {#1};
+	}
+}
+
+
+%% define a new command for a vector over a letter
+\makeatletter
+\def\overvect@#1#2#3{\vbox{\ialign{##\crcr
+       \noalign{\kern-.7pt\nointerlineskip}#1#2\crcr
+       \noalign{\kern1pt\nointerlineskip}$\m@th\hfil#2#3\hfil$\crcr}}}
+\makeatother
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 								  Algorithm Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% color code snippets with the lstlisting environment
+% from https://stackoverflow.com/a/3175141
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Algorithm}
+\lstset{frame=shadowbox,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=left,
+	numberstyle=\footnotesize\color{black!65},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4,
+	backgroundcolor=\color{lightgray!15}
+}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%								'Example' Environment							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% padding around environment
+\mdfsetup {skipabove=8pt, skipbelow=8pt}
+
+%% define the style
+\global \mdfdefinestyle{greyemphasis}{
+	% margins outside the box, relative to the page
+	leftmargin=1cm, 
+	rightmargin=1cm, 
+	skipabove=8pt,
+	skipbelow=8pt,
+	% inner margins
+	innertopmargin=10pt,
+	innerleftmargin=20pt,
+	innerrightmargin=20pt,
+	innerbottommargin=20pt,
+	% no line around box
+	linewidth=0pt,
+	% shade box grey
+	backgroundcolor=gray!20
+}
+
+%% set up a counter
+\newcounter{example}[section]
+\newenvironment{example}[1][]{
+	\stepcounter{example}
+	\ifstrempty{#1}
+	{
+		\mdfsetup{frametitle={{Example~\theexample}}}
+	}
+	{
+		\mdfsetup{frametitle={{Example~\theexample:~#1}}}
+	}
+	\mdfsetup{
+		frametitleaboveskip=20pt,
+		frametitlebelowskip=10pt,
+		frametitlefont={\normalfont\scshape}
+	}
+	\begin{mdframed}[style=greyemphasis] \relax
+} {\end{mdframed}}
+
+
+\newcommand{\pgemph}[1] {
+	\begin{mdframed}[style=greyemphasis]
+		#1
+	\end{mdframed}
+}
+
+
+
+\endinput

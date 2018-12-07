@@ -1,0 +1,51 @@
+
+
+
+%
+% *** Important Chapter
+%
+
+\chapter{Important Chapter} \label{chap:chap_important}
+
+If you desire, you can split your thesis into ``parts'' with the \verb+\part{}+ command.
+Some other cool things you can do:
+
+\begin{example}[An Example Environment]
+	Consider an example, which you would like to present to the reader.
+	I like the following equation:
+	\begin{equation*}
+		\mathrm{e}^{i \pi} + 1 = 0
+		~.
+	\end{equation*}
+\end{example}
+
+Also, you can display algorithms as follows:
+
+\begin{lstlisting}[caption={\texttt{C++} pseudocode of an algorithm}]
+ // mesh and basis function calculations
+ generate_mesh(); generate_basis_functions();
+
+ for (time_index = 0; time_index < num_time_steps; ++time_index) {
+
+	initialize_u_vector(); initialize_delta_u();
+
+	while (norm(delta_u) > newton_tolerance) {
+		// initialize global residual vector and stiffness matrix
+		initialize_r_vector(); initialize_K_matrix();
+
+		assemble_K_matrix();
+		assemble_r_vector();
+
+		// apply boundary conditions
+		apply_boundary_conditions(K_matrix, r_vector);
+
+		solve_delta_u(delta_u, K_matrix, r_vector);
+		u_vector += delta_u;
+	}
+
+	output_u_vector();
+ }
+\end{lstlisting}
+
+Both the example and algorithm environments can be modified in the \texttt{thesis.sty} file.
+
