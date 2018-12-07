@@ -1,17 +1,17 @@
 # Latex Templates
 Latex templates for a variety of different documents. Current files include templates for
+- PhD theses
 - problem sets
 - plotting data
 - papers (single column)
 
 
 Eventually, I plan to add templates for
-- resumes
 - CVs
-- slideshows
+- resumes
 - figures
 - posters
-- PhD theses
+- slideshows
 
 
 # Compiling Documents
