@@ -24,9 +24,9 @@
 
 		% *** authors *** %
 		{\small
-			Amaresh Sahu,$^{1, \ddag}$
-			Author 2,$^{1, \S}$
-			and Author 3$^{1,2, \dag}$ \\
+			Amaresh Sahu,$^{1,}$\hyperlink{email1}{$^{\ddag}$}
+			Author Two,$^{1,}$\hyperlink{email2}{$^{\S}$}
+			and Author 3$^{1,2,}$\hyperlink{email3}{$^{\dag}$} \\
 		}
 		\vspace{0.25in}
 
@@ -64,9 +64,9 @@
 	\noindent\rule{4.6cm}{0.4pt}
 
 	\small
-	\noindent{$\ddag$ amaresh.sahu\textit{@}berkeley.edu \\
-		$\S$    address.two\textit{@}affiliation.edu \\
-		$\dag$  address.three\textit{@}affiliation.edu
+	\noindent{\linkdest{email1}{\hspace{10pt}$^\ddag \,$}amaresh.sahu\textit{@}berkeley.edu \\
+		\linkdest{email2}{\hspace{10pt}$^\S \,$}address.two\textit{@}affiliation.edu \\
+		\linkdest{email3}{\hspace{10pt}$^\dag \,$}address.three\textit{@}affiliation.edu
 	}
 
 
