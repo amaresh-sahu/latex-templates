@@ -47,6 +47,7 @@ ENTRY
     author
     booktitle
     chapter
+    doi
     edition
     editor
     eprint
@@ -639,6 +640,13 @@ FUNCTION {format.url}
   if$
 }
 
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    { new.block "\doi{" doi * "}" * }
+  if$
+}
+
 STRINGS  { bibinfo}
 INTEGERS { nameptr namesleft numnames }
 
@@ -1154,7 +1162,9 @@ FUNCTION {article}
     }
   if$
   new.block
-  %%format.url output
+  format.doi output
+  %new.block
+  %format.url output
   new.block
   format.note output
   format.eprint output
@@ -1190,6 +1200,8 @@ FUNCTION {book}
   if$
   format.edition output
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1205,6 +1217,8 @@ FUNCTION {booklet}
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
   format.date output
+  new.block
+  format.doi output
   new.block
   format.url output
   new.block
@@ -1245,6 +1259,8 @@ FUNCTION {inbook}
   if$
   format.edition output
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1271,6 +1287,8 @@ FUNCTION {incollection}
       format.chapter.pages output
     }
   if$
+  new.block
+  format.doi output
   new.block
   format.url output
   new.block
@@ -1302,7 +1320,9 @@ FUNCTION {inproceedings}
     }
   if$
   new.block
-  % format.url output
+  format.doi output
+  %new.block
+  %format.url output
   new.block
   format.note output
   format.eprint output
@@ -1341,6 +1361,8 @@ FUNCTION {manual}
   format.edition output
   format.date output
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1360,6 +1382,8 @@ FUNCTION {mastersthesis}
   address "address" bibinfo.check output
   format.date "year" output.check
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1375,6 +1399,8 @@ FUNCTION {misc}
   howpublished new.block.checka
   howpublished "howpublished" bibinfo.check output
   format.date output
+  new.block
+  format.doi output
   new.block
   format.url output
   new.block
@@ -1394,6 +1420,8 @@ FUNCTION {phdthesis}
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
   format.date "year" output.check
+  new.block
+  format.doi output
   new.block
   format.url output
   new.block
@@ -1435,6 +1463,8 @@ FUNCTION {proceedings}
      }
   if$
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1454,6 +1484,8 @@ FUNCTION {techreport}
   address "address" bibinfo.check output
   format.date "year" output.check
   new.block
+  format.doi output
+  new.block
   format.url output
   new.block
   format.note output
@@ -1467,6 +1499,8 @@ FUNCTION {unpublished}
   new.block
   format.title "title" output.check
   format.date output
+  new.block
+  format.doi output
   new.block
   format.url output
   new.block
@@ -1511,7 +1545,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\bibinfo}[2]{#2}"
   write$ newline$
-  "\providecommand{\eprint}[2][]{\url{#2}}"
+  "\providecommand{\eprint}[2][]{\texttt{\href{https://arxiv.org/abs/#2}{#2}}}"
   write$ newline$
 }
 EXECUTE {begin.bib}
