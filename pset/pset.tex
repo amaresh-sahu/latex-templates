@@ -3,11 +3,21 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{array}
+\usepackage{bm}
 \usepackage{color}
 \usepackage{enumerate}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage[colorlinks=true,					% color links
+			citecolor=MidnightBlue,				% color for citations
+			linkcolor=BrickRed,					% color for links (sections, equations)
+			urlcolor=blue,						% color URLs
+			breaklinks=true,					% allow links to break over lines
+			pdfauthor=Amaresh~Sahu]{hyperref}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\usepackage[usenames,dvipsnames]{xcolor}		% load all latex colors
 \usepackage{xy}
 
 \pdfpagewidth 8.5in
@@ -22,18 +32,69 @@
 \textwidth 6.5in
 \footskip 0.5in
 \parskip 0in
-\parindent 0.5in
+\parindent 0.25in
 
 \pagestyle{fancy}
 
 \lhead{\today}
-\chead{Problem Set 1}
+\chead{CHE ???: Problem Set 1}
 \rhead{Amaresh Sahu}
 
-% the formatting for this document was provided to me by Matt Superdock, who you may learn more about at https://www.linkedin.com/in/matt-superdock-83224579
+
+
+%% *** custom commands *** %%
+
+\newcommand{\bmcdot}{\bm{\cdot}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\kB}{k^{}_{\mathrm{B}}}
+\newcommand{\kBT}{\kB T}
+\newcommand{\bmnabla}{\bm{\nabla}}
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmvdot}{\bm{\dot{v}}}
+
+
 
 \begin{document}
-\begin{enumerate}
-\item start
-\end{enumerate}
+
+
+
+%
+% *** First Problem
+%
+
+\section*{1. First Problem}
+
+Here, we begin the first problem.
+The incompressible Navier--Stokes equations are given by
+\begin{equation}
+	\bmnabla \bmcdot \bmv
+	\, = \, 0
+	\qquad
+	\text{and}
+	\qquad
+	\rho \bmvdot
+	\, = \, \mu \nabla^2 \bmv
+	\, - \, \bmnabla p
+	~,
+\end{equation}
+where $\rho$ is the fluid density, $\bmv$ is the fluid velocity, $p$ is the pressure, $\mu$ is the fluid shear viscosity, and 
+\begin{equation}
+	\bmvdot
+	\, := \, \dfrac{\partial \bmv}{\partial t}
+	\, + \, \big( \bmnabla \bmv \big) \bmv
+\end{equation}
+is the fluid acceleration.
+
+
+
+%
+% *** Part (a)
+%
+
+\section*{(a). First sub-part}
+
+Here, we begin the first sub-part.
+
+
+
 \end{document}
