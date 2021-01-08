@@ -30,18 +30,19 @@
 \RequirePackage[toc,page]{appendix}					% appendix, goes in table of contents
 \RequirePackage{array}								% tabular environment in math mode
 \RequirePackage[backend=biber,						% biber backend
-				citestyle=numeric-comp,				% compact numerical citations in text
-				style=nature,						% nature format in bibliography
+				citestyle=verbose,					% verbose citations in text (footnotes)
+				bibstyle=numeric,					% numeric ordering in bibliography
 				refsection=chapter]{biblatex}		% bibliography after every chapter
-\RequirePackage{bm}									% slanted bold letters
+\RequirePackage{bm}									% italicized bold math letters
 \RequirePackage{bold-extra}							% bold small caps letters
 \RequirePackage[font={small},						% figure and table captions
 				margin=20pt]{caption}				% add padding around caption
 \RequirePackage{changepage}							% required for the \adjustwidth option
 \RequirePackage{comment}							% comment large blocks of text
+\RequirePackage{csquotes}							% display quote environment
 \RequirePackage[nodayofweek]{datetime}				% format \today macro
 \RequirePackage{enumerate}							% lists
-\RequirePackage{esvect}								% vector arrows
+%\RequirePackage{esvect} 							% vector arrows
 \RequirePackage{etoolbox}
 \RequirePackage{fancyhdr}							% top rule on each page
 \RequirePackage{float}								% position figures and captions
@@ -60,7 +61,10 @@
 \RequirePackage{mathrsfs}							% \mathscr 
 \RequirePackage{mathtools}							% needed for \shortintertext command
 \RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{multicol}							% multiple columns, for symbol list
+\RequirePackage{perpage}							% reset footnotes on every page
 \RequirePackage{sectsty}							% center section headings
+\RequirePackage{setspace}							% set line spacing
 \RequirePackage{sidecap}							% side captions, should delete
 \RequirePackage{stmaryrd}							% \llbracket and \rrbracket
 \RequirePackage{subcaption}							% sub-figures in captions
@@ -82,11 +86,24 @@
 %% **************************************************************************** %%
 
 %% bibliography
-\addbibresource{refs.bib}
+\addbibresource{content/refs.bib}
+\renewcommand\bibname{Bibliographical Notes}		% rename toc title
+
+% removes the word ``in'' before the journal
+\renewbibmacro{in:}{}
+
+% bolds volume number
+\DeclareFieldFormat[article]{volume}{{\textbf{#1}}}
+
+% removes the ``pp.'' before page numbers
+\DeclareFieldFormat[article]{pages}{{#1}}
+
+% removes period at the very end of bibliographic record
+\renewcommand{\finentrypunct}{}
 
 
 %% path to figures
-\graphicspath{{../../Figures/}}
+%\graphicspath{{/path/to/figures/}{/path/to/more/figures/}}
 
 
 %% custom commands
@@ -94,7 +111,7 @@
 
 
 %% date (\today) formatting
-\newdateformat{mydate}{{\THEDAY}{ }\shortmonthname[\THEMONTH]. \THEYEAR}
+\newdateformat{mydate}{{\THEDAY}{ }\monthname[\THEMONTH] \THEYEAR}
 \mydate
 
 
@@ -109,19 +126,63 @@
 %% https://en.wikibooks.org/wiki/LaTeX/Page_Layout#Page_dimensions
 %% to see the layout: \usepackage{showframe}
 
-\topmargin	00pt		% space above header
-\headheight	14pt		% header height
-\headsep	15pt		% from header to top of text
-\footskip	32pt		% bottom of text to bottom of footer
+\pdfpagewidth	8.5in	% page width
+\pdfpageheight	11in	% page height
 
-\parskip	00pt		% spacing after paragraph
-\parindent	15pt		% paragraph indent
+\topmargin		-30pt	% space above header
+\headheight		15pt	% header height
+\headsep		15pt	% from header to top of text
+\footskip		30pt	% bottom of text to bottom of footer
 
-\evensidemargin	0.25in	% even margin (+1 in default)
-\oddsidemargin	0.25in	% odd  margin (+1 in default)
-\textheight		8.25in	% content height
-\textwidth		6.00in	% content width
+\parskip		00pt	% spacing after paragraph
+\parindent		15pt	% paragraph indent
+
+\evensidemargin	0.00in	% even margin (+1 in default)
+\oddsidemargin	0.00in	% odd  margin (+1 in default)
+\textheight		9.00in	% content height
+\textwidth		6.50in	% content width
 \marginparwidth	0.00in	% margin notes width
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%								 Section Formatting								%%
+%%																				%%
+%% **************************************************************************** %%
+
+
+%% section numbering
+\renewcommand{\thepart}{\Alph{part}}						% parts: A, B, C
+\renewcommand{\thechapter}{\Roman{chapter}}					% chapters: I, II, III
+\renewcommand{\thesection}{\arabic{section}}				% sections: 1, 2, 3
+\renewcommand{\thesubsection}{(\alph{subsection})}			% subsections: (a), (b), (c)
+
+% have \paragraph{...} create a new line after the heading
+% from https://tex.stackexchange.com/a/5040
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+
+% add period after title
+\titlelabel{\thetitle. }
+
+
+% redefine the prefix to the subsection number when \ref is used
+% from https://tex.stackexchange.com/a/117623
+\makeatletter
+	\renewcommand{\p@section}{$\S$}
+	\renewcommand{\p@subsection}{$\S\thesection\,$}
+\makeatother
+
+
+%% custom numbering for equations, figures, and tables
+\numberwithin{equation}{chapter}
+\renewcommand{\theequation}{\arabic{equation}}
+\numberwithin{table}{chapter}
+\renewcommand{\thetable}{\arabic{table}}
+\numberwithin{figure}{chapter}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 
 
@@ -131,18 +192,35 @@
 %%																				%%
 %% **************************************************************************** %%
 
+
 %% title
+% from https://tex.stackexchange.com/a/142451
 \renewcommand{\cfttoctitlefont}{\hfill \huge \bfseries}		% change toc title font
 \renewcommand{\cftaftertoctitle}{\hfill}					% center toc title
 \renewcommand\contentsname{Contents}						% rename toc title
 
 
 %% part
-\renewcommand{\cftpartfont}{\hfil \large \bfseries Part }	% in toc, 'part' is bold and center
-\cftpagenumbersoff{part}									% in toc, no page numbers for 'part'
+\renewcommand{\cftpartfont}{\hfil \large \bfseries Part }	% 'part' is bold and center
+\cftpagenumbersoff{part}									% no page numbers for 'part'
 
 
-\setcounter{tocdepth}{1}
+% set indents in the toc
+% from https://tex.stackexchange.com/a/157410
+\cftsetindents{chapter}{0em}{2.8em}
+\cftsetindents{section}{2.8em}{1.1em}
+\cftsetindents{subsection}{3.9em}{1.7em}
+
+
+% add a '.' after the section numbers in toc
+% from tocloft documentation
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{}
+
+
+%% set counter depth
+\setcounter{tocdepth}{3}
 
 
 
@@ -153,7 +231,10 @@
 %% **************************************************************************** %%
 
 %% center chapter titles
-\chapterfont{\centering}
+%\chapterfont{\centering}
+
+%% chapter 1, section 2 shows as ``2'' rather than ``1.2''
+%\renewcommand\thesection{\arabic{section}}
 
 
 
@@ -163,15 +244,25 @@
 %%																				%%
 %% **************************************************************************** %%
 
-%% right now, we're going with the default formatting
+%% use the same style as S. Chandrasekhar
 
-%\pagestyle{fancy}
-%\fancyhf{}
-%\fancyhead[LE,RO]{\thepage}
-%\fancyhead[CE]{\leftmark}
-%\fancyhead[CO]{\rightmark}
-%\fancyhead[RE]{Ch. \thechapter}
-%\fancyhead[LO]{\S \thesection}
+\pagestyle{fancy}
+
+% redefine how 'chapter' and 'section' enter in the heading
+\renewcommand{\chaptermark}[1]{\markboth{\textsc{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsc{#1}}{}}
+
+% set width of header and footer lines to zero
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%% customization
+\fancyhf{}							% clear all default fancy headers and footers
+\fancyhead[LE,RO]{\thepage}			% page numbers on outside
+\fancyhead[CE]{\leftmark}			% chapter name in center of even pages
+\fancyhead[CO]{\rightmark}			% section name in center of odd pages
+\fancyhead[RE]{Ch.\ \thechapter}	% chapter number on right of even pages
+\fancyhead[LO]{\S\ \thesection}		% section number on left of odd pages
 
 
 
@@ -186,21 +277,37 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 
+% reset footnote numbering on every page
+% from https://stackoverflow.com/a/3734179
+\MakePerPage{footnote}
+
+
 % change the order of footnote characters
 % from https://tex.stackexchange.com/a/78223
 \makeatletter
 \def\@fnsymbol#1{
 	\ensuremath{\ifcase#1\or
-	\ddagger\or			% 1
-	\mathsection\or		% 2
-	\mathflat\or		% 3
-	\dagger\or			% 4
-	*\or				% 5
-	\|\or				% 6
-	\ddagger\ddagger\or	% 7
-	\dagger\dagger\or	% 8
-	**					% 9
+	\ddagger\or						% 1
+	\dagger\or						% 2
+	*\or							% 3
+	\mathsection\or					% 4
+	\sharp\or						% 5
+	\|\or							% 6
+	\mathparagraph\or				% 7
+	\ddagger\ddagger\or				% 8
+	\dagger\dagger\or				% 9
+	**\or							% 10
+	\mathsection\mathsection\or		% 11
+	\sharp\sharp\or					% 12
+	\|\|\or							% 13
 	\else\@ctrerr\fi}}
+\makeatother
+
+
+% prevent manual hyperlinks from going to next line
+% from https://tex.stackexchange.com/a/412381
+\makeatletter
+\newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
 \makeatother
 
 

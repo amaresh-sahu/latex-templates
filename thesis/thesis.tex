@@ -1,5 +1,6 @@
-\documentclass[11pt,openany]{book}
+\documentclass[12pt,openany]{book}
 \usepackage{thesis} % all style formatting in thesis.sty
+
 
 
 
@@ -11,6 +12,7 @@
 %											%
 % ***************************************** %
 
+\allowdisplaybreaks
 \begin{document}
 
 
@@ -22,12 +24,25 @@
 % ***************************************** %
 
 \frontmatter
+\pagestyle{empty}
 
 
 
 % *** Title Page *** %
-\input{content/00-title-page}
+\input{content/01-front-matter/00-title-page}
 
+% *** Thesis Page *** %
+\newpage
+\input{content/01-front-matter/01-thesis-page}
+
+% *** Abstract *** %
+\newpage
+\input{content/01-front-matter/02-abstract}
+
+
+
+\newpage
+\pagestyle{fancy}
 % *** Table of Contents *** %
 { \hypersetup{ linkcolor=Black, citecolor=Black } \tableofcontents }
 
@@ -40,19 +55,21 @@
 % ***************************************** %
 
 \mainmatter
+\normalsize
 
 
 
 % *** Introduction *** %
-\input{content/10-introduction}
+\input{content/02-introduction/01-introduction}
 
 
 
-% *** Main Part *** %
-\part{Main Part} \label{part:part_main}
+% *** Theory *** %
+\part{Theory} \label{part_theory}
 
 	% *** Important Chapter *** %
-	\input{content/20-important-chapter}
+	\input{content/03-theory/01-important-chapter}
+	\input{content/bib}
 
 
 

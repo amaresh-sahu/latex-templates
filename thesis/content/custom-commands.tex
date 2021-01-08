@@ -1,0 +1,572 @@
+
+
+
+%% for editing
+\newcommand{\todo}[1]{\textcolor{RedViolet}{[ToDo: #1]}}	% to-do items
+\newcommand{\add}[1]{\textcolor{ForestGreen}{#1}}			% added
+\newcommand{\edit}[1]{\textcolor{blue}{#1}}					% to edit
+\newcommand{\remove}[1]{\textcolor{red}{#1}}				% removed
+
+
+%% to cite
+\newcommand{\qq}{[\edit{\textbf{??}}]}
+
+\newcommand{\pdp}{(\, \bmcdot \,)}
+
+
+%% spacing
+\newcommand{\mke}{\mkern1mu}
+\newcommand{\qqquad}{\qquad\quad}
+
+
+
+%
+% *** OPERATORS
+%
+
+%% bold operators
+\newcommand{\bmcdot}{\bm{\cdot}}
+\newcommand{\bmcolon}{\bm{:}}
+\newcommand{\bmnabla}{\bm{\nabla}}
+
+\newcommand{\Deltas}{\Delta_{\ms}}		% surface Laplacian
+
+
+
+%
+% *** KINEMATICS
+%
+
+
+%% reference quantities
+\newcommand{\tz}{t^{}_0}				% reference time
+\newcommand{\rhoz}{{\rho^{}_0}}			% reference density
+\newcommand{\mcrz}{{\mcr_0}}			% reference region
+
+\newcommand{\mcpz}{{\mcp^{}_{\! 0}}}	% reference patch
+\newcommand{\bmcp}{{\partial \! \mcp}}	% boundary of patch
+\newcommand{\bmcr}{{\partial \! \mcr}}	% boundary of region
+
+\newcommand{\bmxdot}{\bm{\dot{x}}}		% velocity
+\newcommand{\bmuddot}{\bm{\ddot{u}}}	% acceleration
+\newcommand{\bmvdot}{\bm{\dot{v}}}		% acceleration
+
+
+
+%
+% *** THERMODYNAMICS
+%
+
+\newcommand{\bmJq}{\bmJ_{\! \mq}}							% heat flux
+\newcommand{\bmJs}{\bmJ_{\! \ms}}							% entropy flux
+
+\newcommand{\Jqalpha}{J_{\! \mq}^{\alpha}}					% in-plane heat flux
+\newcommand{\Jsalpha}{J_{\! \ms}^{\alpha}}					% in-plane entropy flux
+
+\newcommand{\Jqdiv}{J_{\! \mq \, ; \mke \alpha}^{\alpha}}	% divergence of in-plane heat flux
+\newcommand{\Jsdiv}{J_{\! \ms \, ; \mke \alpha}^{\alpha}}	% divergence of in-plane entropy flux
+
+\newcommand{\etae}{\eta^{}_\me}								% external entropy supply
+\newcommand{\etai}{\eta^{}_\mi}								% internal entropy production
+
+
+
+
+
+
+
+
+
+
+
+
+% upper roman math mode letters
+\newcommand{\ub}{^\mb}
+\newcommand{\um}{^\mm}
+
+
+
+%
+% *** THEORY
+%
+
+
+% *** SINGLE COMPONENT *** %
+
+
+%% membrane integrals
+\newcommand{\intO}{\int_\Omega}
+\newcommand{\mdO}{~\md \Omega}
+
+
+%% energies
+\newcommand{\Wc}{W_{\mc}}			% global compression
+\newcommand{\WH}{W_{\mathrm{H}}}	% global Helfrich
+\newcommand{\Wi}{W_{\mi}}			% global incompressible
+\newcommand{\wc}{w^{}_{\mc}}		% compression
+\newcommand{\wH}{w^{}_{\mathrm{H}}}	% Helfrich
+\newcommand{\wh}{w_{\mh}}			% Helfrich (deprecated)
+\newcommand{\wi}{w^{}_{\mi}}		% incompressible
+
+
+
+%% bending moduli
+\newcommand{\kb}{k_{\mathrm{b}}}	% mean bending modulus
+\newcommand{\kg}{k_{\mathrm{g}}}	% Gaussian bending modulus
+\newcommand{\kc}{k_{\mathrm{c}}}	% compression modulus (compressible material)
+\newcommand{\kp}{k_{\mathrm{p}}}
+\newcommand{\ks}{k_{\mathrm{s}}}	% stretch modulus (stretchable material)
+
+
+%% dimensionless numbers
+\newcommand{\Rey}{\mbox{\textit{Re}}}	% Reynolds number
+\newcommand{\FvK}{F\"{o}ppl--von K\'{a}rm\'{a}n}
+\newcommand{\SL}{\mbox{\textit{S{\small{\hspace{-1pt}\textit{L}}}}}}	% Scriven--Love number
+
+
+%% non-dimensionalized variables
+\newcommand{\nd}{*}
+\newcommand{\alphand}{{\alpha^{\nd}}}
+\newcommand{\betand}{{\beta^{\nd}}}
+\newcommand{\lambdand}{\lambda^{\nd}}
+\newcommand{\tilhnd}{\tilh^\nd}
+\newcommand{\tillnd}{\till^\nd}
+\newcommand{\tnd}{t^\nd}
+\newcommand{\Deltand}{\Delta^{\! \nd}}
+
+
+
+% *** MULTI COMPONENT *** %
+
+%% liquid-ordered and liquid-disordered
+\newcommand{\lo}{{L\textsubscript{o}}}
+\newcommand{\ld}{{L\textsubscript{d}}}
+
+%% Boltzmann constant
+\newcommand{\kB}{k_{\mathrm{B}}}
+
+
+
+% *** CHEMICAL REACTIONS *** %
+
+%% vector arrow over text
+\newcommand{\fvect}[1]{\overset{\rightarrow}{#1}}
+\newcommand{\bvect}[1]{\overset{\leftarrow}{#1}}
+
+
+
+% *** BULK QUANTITIES *** %
+
+% bold roman letters in bulk
+\newcommand{\bmfb}{\bmf\ub}
+\newcommand{\bmub}{\bmu\ub}
+\newcommand{\bmvb}{\bmv\ub}
+
+% bulk integrals
+\newcommand{\intOb}{\int_\Omegab}
+\newcommand{\mdOb}{~\md \Omegab}
+
+% bulk math symbols
+\newcommand{\mub}{\mu\ub}
+\newcommand{\Omegab}{{\Omega\ub}}
+\newcommand{\pb}{p\ub}
+\newcommand{\rhob}{\rho\ub}
+
+
+
+%
+% *** FINITE ELEMENTS
+%
+
+
+%% membrane patch and boundary
+\newcommand{\scpe}{\scp^e}
+\newcommand{\bscp}{\partial \! \scp}
+\newcommand{\scpo}{\scp_{\! 0}}
+\newcommand{\scpk}{\scp_{\! k}}
+\newcommand{\bscpk}{\bscp_{\! k}}
+
+\newcommand{\bfscp}{\partial_{\text{f}} \! \scp}
+\newcommand{\bmscp}{\partial_{\text{m}} \! \scp}
+\newcommand{\bnscp}{\partial_{\text{n}} \! \scp}
+\newcommand{\bdscp}{\partial_{\text{d}} \! \scp}
+\newcommand{\bxscp}{\partial_{\text{x}} \! \scp}
+
+
+%% parametric domain boundary
+\newcommand{\Gammad}{\Gamma_{\text{d}}}		% Dirichlet boundary
+\newcommand{\Gamman}{\Gamma_{\text{n}}}		% Neumann boundary
+
+
+
+\newcommand{\mcuh}{\mcu_h}			% approximate function space
+\newcommand{\mcvh}{\mcv_h}			% approximate function space
+
+%% Lagrangian symbols
+\newcommand{\bmahat}{\bm{\hat{a}}}
+\newcommand{\bmchihat}{\bm{\chihat}}
+\newcommand{\bmfhat}{\bm{\fhat}}
+\newcommand{\bmFhat}{\bm{\Fhat}}
+\newcommand{\bmLhat}{\bm{\Lhat}}
+\newcommand{\bmuhat}{\bm{\uhat}}
+\newcommand{\bmvhat}{\bm{\vhat}}
+\newcommand{\bmxhat}{\bm{\hat{x}}}
+\newcommand{\chihat}{\hat{\chi}}
+\newcommand{\fhat}{\hat{f}}
+\newcommand{\Fhat}{\hat{F}}
+\newcommand{\Jhat}{\hat{J}}
+\newcommand{\Lhat}{\hat{L}}
+\newcommand{\psihat}{\hat{\psi}}
+\newcommand{\rhohat}{\hat{\rho}}
+\newcommand{\rhozhat}{\hat{\rho}^{}_0}
+\newcommand{\uhat}{\hat{u}}
+\newcommand{\vhat}{\hat{v}}
+
+%% ALE symbols
+\newcommand{\bmfch}{\check{\bmf}}
+\newcommand{\bmnch}{\check{\bmn}}
+\newcommand{\bmvch}{\check{\bmv}}
+\newcommand{\bmxch}{\check{\bmx}}
+\newcommand{\rhoch}{\check{\rho}}
+
+\newcommand{\bmvm}{\bmv\um}			% mesh velocity
+\newcommand{\bmvmch}{\bmvch\um}		% checked mesh velocity
+
+
+%% linearization and discretization
+\newcommand{\tbmv}{\tilde{\bmv}}
+\newcommand{\tbmvm}{\tbmv\um}
+\newcommand{\tbmx}{\tilde{\bmx}}
+\newcommand{\bmxm}{\bmx\um}
+\newcommand{\tbmxm}{\tbmx\um}
+\newcommand{\Jm}{J\um}
+\newcommand{\tJm}{\tilde{J}\um}
+\newcommand{\si}{{(i)}}
+\newcommand{\sip}{{(i+1)}}
+
+
+
+%
+% *** UNCLEAR
+%
+
+
+\newcommand{\bmxb}{\bm{x}_{\mathrm{b}}}
+\newcommand{\scmp}{\mathscr{M}_{\mathrm{p}}}
+\newcommand{\npb}{n_{\mathrm{p}}^{\mathrm{b}}}
+\newcommand{\mupb}{\mu_{\mathrm{p}}^{\mathrm{b}}}
+\newcommand{\dphi}{\delta \phi}
+\newcommand{\rh}{\mathrm{h}}
+
+
+
+%
+% *** FORMATTED LETTERS
+%
+
+%% bold math mode letters (lower case)
+\newcommand{\bma}{\bm{a}}
+\newcommand{\bmb}{\bm{b}}
+\newcommand{\bmc}{\bm{c}}
+\newcommand{\bmd}{\bm{d}}
+\newcommand{\bme}{\bm{e}}
+\newcommand{\bmf}{\bm{f}}
+\newcommand{\bmg}{\bm{g}}
+\newcommand{\bmh}{\bm{h}}
+\newcommand{\bmi}{\bm{i}}
+\newcommand{\bmj}{\bm{j}}
+\newcommand{\bmk}{\bm{k}}
+\newcommand{\bml}{\bm{l}}
+\newcommand{\bmm}{\bm{m}}
+\newcommand{\bmn}{\bm{n}}
+\newcommand{\bmo}{\bm{o}}
+\newcommand{\bmp}{\bm{p}}
+\newcommand{\bmq}{\bm{q}}
+\newcommand{\bmr}{\bm{r}}
+\newcommand{\bms}{\bm{s}}
+\newcommand{\bmt}{\bm{t}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+\newcommand{\bmy}{\bm{y}}
+\newcommand{\bmz}{\bm{z}}
+
+
+%% bold math mode letters (upper case)
+\newcommand{\bmA}{\bm{A}}
+\newcommand{\bmB}{\bm{B}}
+\newcommand{\bmC}{\bm{C}}
+\newcommand{\bmD}{\bm{D}}
+\newcommand{\bmE}{\bm{E}}
+\newcommand{\bmF}{\bm{F}}
+\newcommand{\bmG}{\bm{G}}
+\newcommand{\bmH}{\bm{H}}
+\newcommand{\bmI}{\bm{I}}
+\newcommand{\bmJ}{\bm{J}}
+\newcommand{\bmK}{\bm{K}}
+\newcommand{\bmL}{\bm{L}}
+\newcommand{\bmM}{\bm{M}}
+\newcommand{\bmN}{\bm{N}}
+\newcommand{\bmO}{\bm{O}}
+\newcommand{\bmP}{\bm{P}}
+\newcommand{\bmQ}{\bm{Q}}
+\newcommand{\bmR}{\bm{R}}
+\newcommand{\bmS}{\bm{S}}
+\newcommand{\bmT}{\bm{T}}
+\newcommand{\bmU}{\bm{U}}
+\newcommand{\bmV}{\bm{V}}
+\newcommand{\bmW}{\bm{W}}
+\newcommand{\bmX}{{\bm{X}}}
+\newcommand{\bmY}{\bm{Y}}
+\newcommand{\bmZ}{\bm{Z}}
+
+
+%% math calligraphy letters
+\newcommand{\mca}{\mathcal{A}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mce}{\mathcal{E}}
+\newcommand{\mcf}{\mathcal{F}}
+\newcommand{\mcg}{\mathcal{G}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mci}{\mathcal{I}}
+\newcommand{\mcj}{\mathcal{J}}
+\newcommand{\mck}{\mathcal{K}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcn}{\mathcal{N}}
+\newcommand{\mco}{\mathcal{O}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcq}{\mathcal{Q}}
+\newcommand{\mcr}{\mathcal{R}}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mct}{\mathcal{T}}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcv}{\mathcal{V}}
+\newcommand{\mcw}{\mathcal{W}}
+\newcommand{\mcx}{\mathcal{X}}
+\newcommand{\mcy}{\mathcal{Y}}
+\newcommand{\mcz}{\mathcal{Z}}
+
+
+%% math script letters
+\newcommand{\sca}{{\mathscr{A}}}
+\newcommand{\scb}{{\mathscr{B}}}
+\newcommand{\scc}{{\mathscr{C}}}
+\newcommand{\scd}{{\mathscr{D}}}
+\newcommand{\sce}{{\mathscr{E}}}
+\newcommand{\scf}{{\mathscr{F}}}
+\newcommand{\scg}{{\mathscr{G}}}
+\newcommand{\sch}{{\mathscr{H}}}
+\newcommand{\sci}{{\mathscr{I}}}
+\newcommand{\scj}{{\mathscr{J}}}
+\newcommand{\sck}{{\mathscr{K}}}
+\newcommand{\scl}{{\mathscr{L}}}
+\newcommand{\scm}{{\mathscr{M}}}
+\newcommand{\scn}{{\mathscr{N}}}
+\newcommand{\sco}{{\mathscr{O}}}
+\newcommand{\scp}{{\mathscr{P}}}
+\newcommand{\scq}{{\mathscr{Q}}}
+\newcommand{\scr}{{\mathscr{R}}}
+\newcommand{\scs}{{\mathscr{S}}}
+\newcommand{\sct}{{\mathscr{T}}}
+\newcommand{\scu}{{\mathscr{U}}}
+\newcommand{\scv}{{\mathscr{V}}}
+\newcommand{\scw}{{\mathscr{W}}}
+\newcommand{\scx}{{\mathscr{X}}}
+\newcommand{\scy}{{\mathscr{Y}}}
+\newcommand{\scz}{{\mathscr{Z}}}
+
+
+% roman math mode letters
+\newcommand{\ma}{{\mathrm{a}}}
+\newcommand{\mb}{{\mathrm{b}}}
+\newcommand{\mc}{{\mathrm{c}}}
+\newcommand{\md}{{\mathrm{d}}}
+\newcommand{\me}{{\mathrm{e}}}
+\newcommand{\mf}{{\mathrm{f}}}
+\newcommand{\mg}{{\mathrm{g}}}
+\newcommand{\mh}{{\mathrm{h}}}
+\newcommand{\mi}{{\mathrm{i}}}
+\newcommand{\mj}{{\mathrm{j}}}
+\newcommand{\mk}{{\mathrm{k}}}
+\newcommand{\ml}{{\mathrm{l}}}
+\newcommand{\mm}{{\mathrm{m}}}
+\newcommand{\mn}{{\mathrm{n}}}
+\newcommand{\mo}{{\mathrm{o}}}
+\newcommand{\mq}{{\mathrm{q}}}
+\newcommand{\mr}{{\mathrm{r}}}
+\newcommand{\ms}{{\mathrm{s}}}
+\newcommand{\mt}{{\mathrm{t}}}
+\newcommand{\mT}{{\mathrm{T}}}
+\newcommand{\mv}{{\mathrm{v}}}
+\newcommand{\mw}{{\mathrm{w}}}
+\newcommand{\mx}{{\mathrm{x}}}
+\newcommand{\my}{{\mathrm{y}}}
+\newcommand{\mz}{{\mathrm{z}}}
+
+
+% tilde Roman letters
+\newcommand{\tila}{\tilde{a}}
+\newcommand{\tilb}{\tilde{b}}
+\newcommand{\tilc}{\tilde{c}}
+\newcommand{\tild}{\tilde{d}}
+\newcommand{\tile}{\tilde{e}}
+\newcommand{\tilf}{\tilde{f}}
+\newcommand{\tilg}{\tilde{g}}
+\newcommand{\tilh}{\tilde{h}}
+\newcommand{\tili}{\tilde{i}}
+\newcommand{\tilj}{\tilde{j}}
+\newcommand{\tilk}{\tilde{k}}
+\newcommand{\tilm}{\tilde{m}}
+\newcommand{\tiln}{\tilde{n}}
+\newcommand{\tilo}{\tilde{o}}
+\newcommand{\tilp}{\tilde{p}}
+\newcommand{\tilq}{\tilde{q}}
+\newcommand{\tilr}{\tilde{r}}
+\newcommand{\tils}{\tilde{s}}
+\newcommand{\tilt}{\tilde{t}}
+\newcommand{\tilu}{\tilde{u}}
+\newcommand{\tilv}{\tilde{v}}
+\newcommand{\tilw}{\tilde{w}}
+\newcommand{\tilx}{\tilde{x}}
+\newcommand{\tily}{\tilde{y}}
+\newcommand{\tilz}{\tilde{z}}
+
+
+% tilde Roman letters (upper case)
+\newcommand{\tilA}{\tilde{A}}
+\newcommand{\tilB}{\tilde{B}}
+\newcommand{\tilC}{\tilde{C}}
+\newcommand{\tilD}{\tilde{D}}
+\newcommand{\tilE}{\tilde{E}}
+\newcommand{\tilF}{\tilde{F}}
+\newcommand{\tilG}{\tilde{G}}
+\newcommand{\tilH}{\tilde{H}}
+\newcommand{\tilI}{\tilde{I}}
+\newcommand{\tilJ}{\tilde{J}}
+\newcommand{\tilK}{\tilde{K}}
+\newcommand{\tilL}{\tilde{L}}
+\newcommand{\tilM}{\tilde{M}}
+\newcommand{\tilN}{\tilde{N}}
+\newcommand{\tilO}{\tilde{O}}
+\newcommand{\tilP}{\tilde{P}}
+\newcommand{\tilQ}{\tilde{Q}}
+\newcommand{\tilR}{\tilde{R}}
+\newcommand{\tilS}{\tilde{S}}
+\newcommand{\tilT}{\tilde{T}}
+\newcommand{\tilU}{\tilde{U}}
+\newcommand{\tilV}{\tilde{V}}
+\newcommand{\tilW}{\tilde{W}}
+\newcommand{\tilX}{\tilde{X}}
+\newcommand{\tilY}{\tilde{Y}}
+\newcommand{\tilZ}{\tilde{Z}}
+
+
+%% bar Roman letters
+\newcommand{\bara}{\bar{a}}
+\newcommand{\barb}{\bar{b}}
+\newcommand{\barc}{\bar{c}}
+\newcommand{\bard}{\bar{d}}
+\newcommand{\bare}{\bar{e}}
+\newcommand{\barf}{\bar{f}}
+\newcommand{\barg}{\bar{g}}
+\newcommand{\barh}{\bar{h}}
+\newcommand{\bari}{\bar{i}}
+\newcommand{\barj}{\bar{j}}
+\newcommand{\bark}{\bar{k}}
+\newcommand{\barl}{\bar{l}}
+\newcommand{\barm}{\bar{m}}
+\newcommand{\barn}{\bar{n}}
+%\newcommand{\baro}{\bar{o}}
+\newcommand{\barp}{\bar{p}}
+\newcommand{\barq}{\bar{q}}
+\newcommand{\barr}{\bar{r}}
+\newcommand{\bars}{\bar{s}}
+\newcommand{\bart}{\bar{t}}
+\newcommand{\baru}{\bar{u}}
+\newcommand{\barv}{\bar{v}}
+\newcommand{\barw}{\bar{w}}
+\newcommand{\barx}{\bar{x}}
+\newcommand{\bary}{\bar{y}}
+\newcommand{\barz}{\bar{z}}
+
+
+%% bar Roman letters (upper case)
+\newcommand{\barA}{\bar{A}}
+\newcommand{\barB}{\bar{B}}
+\newcommand{\barC}{\bar{C}}
+\newcommand{\barD}{\bar{D}}
+\newcommand{\barE}{\bar{E}}
+\newcommand{\barF}{\mkern4.5mu\overline{\mkern-4.5mu F \mkern-0.5mu}\mkern0.5mu}
+\newcommand{\barG}{\bar{G}}
+\newcommand{\barH}{\bar{H}}
+\newcommand{\barI}{\bar{I}}
+\newcommand{\barJ}{\bar{J}}
+\newcommand{\barK}{\bar{K}}
+\newcommand{\barL}{\bar{L}}
+\newcommand{\barM}{\mkern4.5mu\overline{\mkern-4.5mu M \mkern-1.5mu}\mkern1.5mu}
+\newcommand{\barN}{\bar{N}}
+\newcommand{\barO}{\bar{O}}
+\newcommand{\barP}{\bar{P}}
+\newcommand{\barQ}{\bar{Q}}
+\newcommand{\barR}{\bar{R}}
+\newcommand{\barS}{\bar{S}}
+\newcommand{\barT}{\bar{T}}
+\newcommand{\barU}{\bar{U}}
+\newcommand{\barV}{\bar{V}}
+\newcommand{\barW}{\bar{W}}
+\newcommand{\barX}{\bar{X}}
+\newcommand{\barY}{\bar{Y}}
+\newcommand{\barZ}{\bar{Z}}
+
+
+%% tilde Greek letters
+\newcommand{\tillambda}{\tilde{\lambda}}
+\newcommand{\tilpsi}{\tilde{\psi}}
+
+
+%% bar Greek letters
+\newcommand{\barpsi}{\bar{\psi}}
+\newcommand{\bpsi}{\bar{\psi}}
+
+
+%% check Greek indices
+\newcommand{\calpha}{{\check{\alpha}}}
+\newcommand{\cbeta}{{\check{\beta}}}
+\newcommand{\cgamma}{{\check{\gamma}}}
+\newcommand{\cdelta}{{\check{\delta}}}
+\newcommand{\ceta}{{\check{\eta}}}
+\newcommand{\clambda}{{\check{\lambda}}}
+\newcommand{\cmu}{{\check{\mu}}}
+\newcommand{\cnu}{{\check{\nu}}}
+\newcommand{\crho}{{\check{\rho}}}
+\newcommand{\csigma}{{\check{\sigma}}}
+
+
+%% hat Greek indices
+\newcommand{\halpha}{{\hat{\alpha}}}
+\newcommand{\hbeta}{{\hat{\beta}}}
+\newcommand{\hgamma}{{\hat{\gamma}}}
+\newcommand{\hdelta}{{\hat{\delta}}}
+\newcommand{\heta}{{\hat{\eta}}}
+\newcommand{\hlambda}{{\hat{\lambda}}}
+\newcommand{\hmu}{{\hat{\mu}}}
+\newcommand{\hnu}{{\hat{\nu}}}
+\newcommand{\hrho}{{\hat{\rho}}}
+\newcommand{\hsigma}{{\hat{\sigma}}}
+
+
+% bold Greek letters
+\newcommand{\bmalpha}{\bm{\alpha}}
+\newcommand{\bmbeta}{\bm{\beta}}
+\newcommand{\bmchi}{\bm{\chi}}
+\newcommand{\bmvarepsilon}{\pmb{\bm{\varepsilon}}}
+\newcommand{\bmkappa}{\bm{\kappa}}
+\newcommand{\bmmu}{\bm{\mu}}
+\newcommand{\bmnu}{\bm{\nu}}
+\newcommand{\bmsigma}{\bm{\sigma}}
+\newcommand{\bmtau}{\bm{\tau}}
+

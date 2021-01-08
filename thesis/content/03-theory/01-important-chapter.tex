@@ -1,0 +1,109 @@
+
+
+
+%
+% *** Important Chapter
+%
+
+\chapter{Important Chapter} \label{chap_important}
+\setcounter{footnote}{0}
+
+\begin{displayquote}
+	\fontfamily{bch}\selectfont
+	\textit{%
+		Classical thermodynamics has solved the problem of the competition
+		between randomness and organization for equilibrium situations.
+		How then is it possible to extend these results to dissipative systems?
+		What part of the energy flow may be used to create and maintain some
+		structure in such systems?
+	}\\
+	\rule{0mm}{1pt}\hfill---Ilya R.\ Prigogine~\footcite{prigogine}
+\end{displayquote}
+
+I often like to begin thesis chapters with a quote.
+Note that if you use the \verb+\footcite{}+ command, then the citation will appear as a footnote, and will also be reported \textit{at the end of each chapter.}
+For this reason, the file \verb+bib.tex+ should be included after every chapter in the file \verb+thesis.tex+ with the command \verb+\input{content/bib}+.
+You can also use the \verb+\footnote{}+ command, and then the \verb+\cite{}+ command within the footnote, as in the following example which produces the footnote below:%
+\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}}
+\\[8pt]
+\verb+\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}}+
+\\[8pt]
+Note that you can include arXiv links in your citations!
+The bibliography is compiled by running the command \verb+biber thesis.bcf+ in the command line.
+
+
+
+%
+% *** The equation environment
+%
+
+\section{The equation environment} \label{sec_equation_environment}
+
+Many custom commands are provided in the \verb+custom-commands.tex+ file.
+The following equation was obtained by writing
+\verb+\bmnabla \bmcdot \bmv \, = \, 0 ~.+
+\begin{equation}
+	\bmnabla \bmcdot \bmv
+	\, = \, 0
+	~.
+\end{equation}
+In general, I recommend adding additional spaces in math mode, to create a more aesthetic result.
+The command \verb+\+ creates a large space, the command \verb+\,+ creates a medium space, and the custom command \verb+\mke+ (equivalently \verb+\mkern1mu+) makes a small space.
+Additionally, the command \verb+~+ creates a very large space.
+
+
+
+%
+% *** The additional environments
+%
+
+\section{The additional environments} \label{sec_additional_environments}
+
+Here, we show two additional features.  
+You can construct an `Example' environment (currently, this can handle page breaks, but does not maintain nice spacing):
+
+\begin{example}[An Example Environment]
+	Consider an example, which you would like to present to the reader.
+	I like the following equation:
+	\begin{equation*}
+		\mathrm{e}^{i \pi}
+		\, + \, 1
+		\, = \, 0
+		~.
+	\end{equation*}
+\end{example}
+
+
+\noindent Also, you can display algorithms as follows:
+
+\begin{lstlisting}[caption={\texttt{C++} pseudocode of an algorithm}]
+ // mesh and basis function calculations
+ generate_mesh(); generate_basis_functions();
+
+ for (time_index = 0; time_index < num_time_steps; ++time_index) {
+
+	initialize_u_vector(); initialize_delta_u();
+
+	while (norm(delta_u) > newton_tolerance) {
+		// initialize global residual vector and stiffness matrix
+		initialize_r_vector(); initialize_K_matrix();
+
+		assemble_K_matrix();
+		assemble_r_vector();
+
+		// apply boundary conditions
+		apply_boundary_conditions(K_matrix, r_vector);
+
+		solve_delta_u(delta_u, K_matrix, r_vector);
+		u_vector += delta_u;
+	}
+
+	output_u_vector();
+ }
+\end{lstlisting}
+
+\noindent Both the example and algorithm environments can be modified in the \texttt{thesis.sty} file.
+\newpage
+
+
+
