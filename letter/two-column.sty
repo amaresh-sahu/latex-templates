@@ -1,0 +1,187 @@
+% written by Amaresh Sahu
+% 22 Jan. 2021
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%					  Style file, for two-column formatting						%%
+%%																				%%
+%% **************************************************************************** %%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{two-column}
+	[2021/01/22 v0.01 LaTeX package for two-column letter formatting]
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%									Required Packages							%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% equivalent of 'usepackage' in tex file
+
+\RequirePackage{amsmath}							% math mode enhancements
+\RequirePackage{amssymb}							% extended symbol collection
+\RequirePackage{amsthm}								% theorem-like structures
+\RequirePackage[title]{appendix}					% appendix, goes in table of contents
+\RequirePackage{array}								% tabular environment in math mode
+\RequirePackage{bm}									% slanted bold letters
+\RequirePackage[font={small},						% figure and table captions
+				margin=20pt]{caption}				% small font size, 20pt margins
+\RequirePackage{cite}								% reference citations (bibtex)
+\RequirePackage{comment}							% comment large blocks of text
+\RequirePackage[nodayofweek]{datetime}				% format \today macro
+\RequirePackage{dcolumn}							% align decimal point in table columns
+\RequirePackage{enumerate}							% lists
+\RequirePackage{etoolbox}							% used to remove bibliography title (patchcmd)
+\RequirePackage{fancyhdr}							% top rule on each page
+\RequirePackage{float}								% position figures and captions
+\RequirePackage[T1]{fontenc}						% 8-bit font encoding: glyphs, accents
+\RequirePackage{graphicx}							% include figures
+\RequirePackage[colorlinks=true,					% color links
+				citecolor=MidnightBlue,				% color for citations
+				linkcolor=BrickRed,					% color for links (sections, equations)
+				urlcolor=blue,						% color URLs
+				breaklinks=true,					% allow links to break over lines
+				pdfauthor=Amaresh~Sahu,
+				pdftitle=Two~Column~Paper,
+				pdfsubject=Latex~Templates,
+				%bookmarksopen,						% all bookmarks open in pdf index
+				bookmarksdepth=3]{hyperref}			% set depth of bookmarks in pdf index
+\RequirePackage{lipsum}								% dummy text
+\RequirePackage{mathrsfs}							% \mathscr 
+\RequirePackage{mathtools}							% needed for \shortintertext command
+\RequirePackage{multicol}							% multi-column environment
+\RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{sectsty}							% center section headings
+\RequirePackage{stmaryrd}							% \llbracket and \rrbracket
+\RequirePackage{subcaption}							% sub-figures in captions
+\RequirePackage{textgreek}							% Greek letters in bibliography
+\RequirePackage{titlesec}							% section title formatting
+\RequirePackage{tocloft}							% table of contents formatting
+\RequirePackage{verbatim}							% block comments, code display
+\RequirePackage{wrapfig}							% wrap text around smaller figures
+\RequirePackage[usenames,dvipsnames]{xcolor}		% load all latex colors
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%%						Resources: Figures, Custom Commands						%%
+%%																				%%
+%% **************************************************************************** %%
+
+%% path to figures
+\graphicspath{{Figures/}}
+
+
+%% custom commands
+\input{custom-commands.tex}
+
+
+%% date (\today) formatting
+\newdateformat{mydate}{{\THEDAY}{ }\monthname[\THEMONTH] \THEYEAR}
+\mydate
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Page Formatting								%%
+%%																				%%
+%% **************************************************************************** %%
+
+\pdfpagewidth	8.5in
+\pdfpageheight	11in 
+\topmargin		-0.67in
+\evensidemargin	-0.25in
+\oddsidemargin	-0.25in
+\headheight		0.21in
+\headsep		0.21in
+\topskip		0.0in
+\textheight		9.5in
+\textwidth		7.0in
+\footskip		0.35in
+\parskip		0in
+\parindent		12pt
+\setlength{\columnsep}{20pt}
+
+% have \paragraph{...} create a new line after the heading
+% from https://tex.stackexchange.com/a/5040
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 									Page Headers								%%
+%%																				%%
+%% **************************************************************************** %%
+
+\pagestyle{fancy}
+
+% set width of header and footer lines to zero
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%% customization
+\fancyhf{}								% clear all default fancy headers and footers
+\fancyhead[R]{\thepage}					% page numbers on right
+\fancyhead[CE]{\textit{Sahu et al.}}	% authors
+\fancyhead[CO]{\textit{Short title of paper}}	% short title
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 								  Section Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+\renewcommand{\abstractname}{} % no abstract name
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{} % no bibliography name
+
+
+
+%% **************************************************************************** %%
+%%																				%%
+%% 								 Footnote Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% change footnote markers from numbers to symbols
+% from https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+% change the order of footnote characters
+% from https://tex.stackexchange.com/a/78223
+\makeatletter
+\def\@fnsymbol#1{
+	\ensuremath{\ifcase#1\or
+	\ddagger\or			% 1
+	\mathsection\or		% 2
+	\dagger\or			% 3
+	*\or				% 4
+	\P\or				% 5
+	\|\or				% 6
+	\ddagger\ddagger\or	% 7
+	\dagger\dagger\or	% 8
+	**					% 9
+	\else\@ctrerr\fi}}
+\makeatother
+
+
+% prevent manual hyperlinks from going to next line
+% from https://tex.stackexchange.com/a/412381
+\makeatletter
+\newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+\makeatother
+
+
+
+\endinput

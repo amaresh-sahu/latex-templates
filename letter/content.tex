@@ -1,0 +1,78 @@
+
+
+
+%
+% *** Introduction
+%
+
+\section{Introduction}
+
+If you're interested, take a look at one of my papers \cite{sahu-mandadapu-pre-2020}.
+\lipsum[2]
+
+
+
+%
+% *** First Section
+%
+
+\section{First Section} \label{sec:first_section}
+
+\lipsum[3]
+
+
+
+%
+% *** First Subsection
+%
+
+\subsection{First Subsection}
+
+\lipsum[4]
+
+
+
+%
+% *** First Sub-subsection
+%
+
+\subsubsection{First Sub-subsection}
+
+\lipsum[5]
+
+
+
+%
+% *** Paragraph
+%
+
+\paragraph{Paragraph}
+
+\lipsum[6]
+
+
+
+%
+% *** Compiling the PDF
+%
+
+\section{Compiling the PDF}
+
+I use the command line to compile my PDF files.
+Run
+\begin{verbatim}
+	xelatex paper.tex
+\end{verbatim}
+to compile the PDF.
+Every time you modify the \verb+refs.bib+ bibliography file, you will need to run
+\begin{verbatim}
+	xelatex paper.tex
+	bibtex paper.aux
+	xelatex paper.tex
+	xelatex paper.tex
+\end{verbatim}
+to correctly format the bibliography.
+We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
+
+
+

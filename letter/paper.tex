@@ -1,0 +1,95 @@
+\documentclass[11pt,twoside,notitlepage,]{article}
+\usepackage{two-column}
+
+
+
+\begin{document}
+	\allsectionsfont{\sffamily}
+	\thispagestyle{empty}
+
+
+
+	%
+	% *** INITIAL FORMATTING
+	%
+
+	%
+	% *** title *** %
+	%
+	\noindent{\textsf{\textbf{%
+		\LARGE{The nice, long, descriptive title of the paper goes here}
+	}}}
+	\\[15pt]
+	%
+	% *** authors *** %
+	%
+	{\small\textsc{%
+		Amaresh Sahu,$^{1,}$\hyperlink{email1}{$^{\ddag}$}
+		Author Two,$^{1,}$\hyperlink{email2}{$^{\S}$}
+		and Author Three$^{1,2,}$\hyperlink{email3}{$^{\dag}$} \\
+	}}
+			%Amaresh Sahu,$^{1,}$
+			%Author Two,$^{1,}$
+			%and Author 3$^{1,2,}$ \\
+	\\[0pt]
+	%
+	% *** affiliations *** %
+	%
+	{\footnotesize%
+		{%
+			\noindent
+			\textit{$^1$%
+			Department of Chemical \& Biomolecular Engineering,
+			University of California, Berkeley, CA 94720, USA}
+			\\[3pt]
+			\textit{$^2$%
+			Some other affiliation}
+		}
+	}
+	\\[-20pt]
+	%
+	% *** Abstract
+	%
+	\begin{abstract}
+		\noindent Dated: \today
+		\\[15pt]
+		\noindent\textsf{\textbf{Abstract.}} Abstract goes here.
+		\lipsum[1]
+	\end{abstract}
+
+
+
+
+	%
+	% *** TWO-COLUMN ENVIRONMENT
+	%
+	\normalsize
+	\begin{multicols*}{2}
+		%
+		% *** CONTENT 
+		%
+
+		\input{content}
+
+
+
+		%
+		% *** REFERENCES
+		%
+
+		\section*{References}
+
+		\small
+		\noindent{%
+			\linkdest{email1}{\hspace{11pt}$^\ddag \,$}\href{mailto:amaresh.sahu@berkeley.edu}{\texttt{amaresh.sahu@berkeley.edu}} \\[1pt]
+			\linkdest{email2}{\hspace{11pt}$^\S \,$}\texttt{address.two@affiliation.edu} \\[1pt]
+			\linkdest{email3}{\hspace{11pt}$^\dag \,$}\texttt{address.three@affiliation.edu}
+		}
+
+		\bibliographystyle{bibStyle}
+		\bibliography{refs}
+	\end{multicols*}
+
+
+
+\end{document}
