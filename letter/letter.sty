@@ -28,6 +28,7 @@
 \RequirePackage{amsthm}								% theorem-like structures
 \RequirePackage[title]{appendix}					% appendix, goes in table of contents
 \RequirePackage{array}								% tabular environment in math mode
+\RequirePackage[noblocks]{authblk}					% author and affiliation, using footnotes
 \RequirePackage{bm}									% slanted bold letters
 \RequirePackage[font={small},						% figure and table captions
 				margin=0pt]{caption}				% small font size, no margins
@@ -121,25 +122,20 @@
 %%																				%%
 %% **************************************************************************** %%
 
+\renewcommand\Authfont{\scshape\small}
+\renewcommand\Affilfont{\itshape\footnotesize}
+
+\newcommand*{\shortauthor}[1]{\gdef\@shortauthor{#1}}
+\newcommand*{\shorttitle}[1]{\gdef\@shorttitle{#1}}
+
 \makeatletter
 \def\@maketitle{%
-	%\let \footnote \thanks
+	\let\footnote\thanks
 	{\textbf{\textsf{\LARGE\@title}}}%
 	\\[15pt]
-	{\small\textsc{\@author}}
-	\\[8pt]
-	{\footnotesize%
-		{%
-			\noindent
-			\textit{$^1$%
-			Department of Chemical \& Biomolecular Engineering,
-			University of California, Berkeley, CA 94720, USA}
-			\\[1pt]
-			\textit{$^2$%
-			Some other affiliation}
-		}
-	}
-	\\[-18pt]
+	\@author%
+	\\[-14pt]
+	\@thanks
 }
 \makeatother
 
@@ -160,8 +156,10 @@
 %% customization
 \fancyhf{}	% clear all default fancy headers and footers
 \fancyhead[R]{\thepage}	% page numbers on right
-\fancyhead[CE]{\textit{A.\ Sahu et al.}}	% authors
-\fancyhead[CO]{\textit{Short title of paper}}	% short title
+\makeatletter
+	\fancyhead[CE]{\textit{\@shortauthor}}
+	\fancyhead[CO]{\textit{\@shorttitle}}
+\makeatother
 
 
 
