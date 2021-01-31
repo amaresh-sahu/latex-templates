@@ -5,7 +5,7 @@
 % *** Introduction
 %
 
-\section{Introduction}
+\section{Introduction} \label{sec_intro}
 
 If you're interested, take a look at one of my papers \cite{sahu-mandadapu-pre-2020}.
 \lipsum[2]
@@ -13,10 +13,87 @@ If you're interested, take a look at one of my papers \cite{sahu-mandadapu-pre-2
 
 
 %
-% *** First Section
+% *** Compiling the PDF
 %
 
-\section{First Section} \label{sec:first_section}
+\section{Compiling the PDF} \label{sec_compiling}
+
+I use the command line to compile my PDF files.
+Run
+\begin{verbatim}
+	xelatex paper.tex
+\end{verbatim}
+to compile the PDF.
+Every time you modify the \verb+refs.bib+ bibliography file, you will need to run
+\begin{verbatim}
+	xelatex paper.tex
+	bibtex paper.aux
+	xelatex paper.tex
+	xelatex paper.tex
+\end{verbatim}
+to correctly format the bibliography.
+We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
+
+
+
+%
+% *** Figures and Tables
+%
+
+\section{Figures and Tables} \label{sec_figures_tables}
+
+We can use the usual commands, with full flexibility, to generate figures and tables.
+For example, Table \ref{tab_params} details some important lipid membrane parameters, and it's location can be specified using the usual \texttt{[tbhp!]} parameters.
+Note that we use the command \verb+\resizebox{\linewidth}{!}{ }+ to vary the text size such that the entire table fits into a single column.
+\begin{table}[t!]
+	\centering
+	\vspace{4pt}
+	\resizebox{\linewidth}{!}{%
+		\renewcommand{\arraystretch}{1.1}
+		\begin{tabular}{c l l c}
+			\hline
+			\hline
+			Sym.\		& Parameter				& Value														& Ref.\ \\
+			\hline
+			$\kb$		& Bending modulus		& $10^2~\text{pN} \cdot \text{nm}$							& -- \\
+			$\Lambda$	& Surface tension		& $10^{-3}~\text{pN}/\text{nm}$								& -- \\
+			$\zeta$		& Membrane viscosity	& $10~\text{pN} \cdot \mu \text{s}/\text{nm}$				& -- \\
+			$\mu^\pm$	& Bulk viscosity		& $10~\text{pN} \cdot \mu \text{s}/\text{nm}^{\text{2}}$	& -- \\
+			\hline
+			\hline
+		\end{tabular}
+	}
+	\caption{Dimensional parameters.}
+	\label{tab_params}
+\end{table}
+We can also make a full width table using \verb+\begin{table*}+ and \verb+\end{table*}+, as demonstrated with Table \ref{tab_params_wide}.
+\begin{table*}[t!]
+	\centering
+	\setlength{\tabcolsep}{20pt}
+	\renewcommand{\arraystretch}{1.3}
+	\begin{tabular}{c l l c}
+		\hline
+		\hline
+		Sym.\		& Parameter				& Value														& Ref.\ \\
+		\hline
+		$\kb$		& Bending modulus		& $10^2~\text{pN} \cdot \text{nm}$							& -- \\
+		$\Lambda$	& Surface tension		& $10^{-3}~\text{pN}/\text{nm}$								& -- \\
+		$\zeta$		& Membrane viscosity	& $10~\text{pN} \cdot \mu \text{s}/\text{nm}$				& -- \\
+		$\mu^\pm$	& Bulk viscosity		& $10~\text{pN} \cdot \mu \text{s}/\text{nm}^{\text{2}}$	& -- \\
+		\hline
+		\hline
+	\end{tabular}
+	\caption{Dimensional parameters, in a full width table.}
+	\label{tab_params_wide}
+\end{table*}
+
+
+
+%
+% *** Example Section
+%
+
+\section{Example Section} \label{sec_example_section}
 
 \lipsum[3]
 
@@ -26,7 +103,7 @@ If you're interested, take a look at one of my papers \cite{sahu-mandadapu-pre-2
 % *** First Subsection
 %
 
-\subsection{First Subsection}
+\subsection{First Subsection} \label{sec_first_subsection}
 
 \lipsum[4]
 
@@ -50,29 +127,6 @@ If you're interested, take a look at one of my papers \cite{sahu-mandadapu-pre-2
 
 \lipsum[6]
 
-
-
-%
-% *** Compiling the PDF
-%
-
-\section{Compiling the PDF}
-
-I use the command line to compile my PDF files.
-Run
-\begin{verbatim}
-	xelatex paper.tex
-\end{verbatim}
-to compile the PDF.
-Every time you modify the \verb+refs.bib+ bibliography file, you will need to run
-\begin{verbatim}
-	xelatex paper.tex
-	bibtex paper.aux
-	xelatex paper.tex
-	xelatex paper.tex
-\end{verbatim}
-to correctly format the bibliography.
-We include bibtex formatting, rather than the more powerful and user-friendly biber back-end, because Arxiv submissions require a bibtex back-end.
 
 
 
