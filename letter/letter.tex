@@ -3,6 +3,11 @@
 
 
 
+\newcommand\email[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnotetext{#1}%
+	\endgroup
+}
 \begin{document}
 \allsectionsfont{\sffamily}
 
@@ -19,16 +24,16 @@
 \shorttitle{Short title of letter}
 
 % *** authors *** %
-\author[1,$\ddag$]{Amaresh Sahu\thanks{foot}}
-\author[1,$\S$]{Author Two}
-\author[2,$\dag$]{Author Three}
+\author[1,2,$\ddag$]{Amaresh Sahu}
+\author[1,3,$\dag$]{Kranthi K.\ Mandadapu}
 
 % *** short authors *** $
-\shortauthor{A.\ Sahu et al.}
+\shortauthor{A.\ Sahu and K.K.\ Mandadapu}
 
 % *** affiliations *** %
-\affil[1]{Department of Chemical \& Biomolecular Engineering, University of California, Berkeley, CA 94720, USA}
-\affil[2]{Some other affiliation}
+\affil[1]{ Department of Chemical \& Biomolecular Engineering, University of California, Berkeley CA 94720, USA}
+\affil[2]{ McKetta Department of Chemical Engineering, University of Texas, Austin TX 78712, USA}
+\affil[3]{ Chemical Sciences Division, Lawrence Berkeley National Laboratory, CA 94720, USA}
 
 % *** date *** %
 \date{\today}
@@ -62,6 +67,9 @@
 % *** CONTENT 
 %
 
+\email{$^\ddag \,$\href{mailto:amaresh.sahu@berkeley.edu}{\texttt{amaresh.sahu@berkeley.edu}}}
+\email{$^\dag  \,$\href{mailto:kranthi@berkeley.edu}{\texttt{kranthi@berkeley.edu}}}
+
 \normalsize
 \input{content}
 
@@ -74,13 +82,7 @@
 \section*{References}
 
 \small
-\noindent{%
-	\linkdest{email1}{\hspace{11pt}$^\ddag \,$}\href{mailto:amaresh.sahu@berkeley.edu}{\texttt{amaresh.sahu@berkeley.edu}} \\[1pt]
-	\linkdest{email2}{\hspace{11pt}$^\S \,$}\texttt{address.two@affiliation.edu} \\[1pt]
-	\linkdest{email3}{\hspace{11pt}$^\dag \,$}\texttt{address.three@affiliation.edu}
-}
-
-\bibliographystyle{bibStyle}
+\bibliographystyle{bib-letter}
 \bibliography{refs}
 
 

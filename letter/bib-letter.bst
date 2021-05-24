@@ -647,6 +647,17 @@ FUNCTION {format.doi}
   if$
 }
 
+FUNCTION {doilink}
+{ duplicate$ empty$
+    { pop$ "" }
+    { doi empty$
+        { skip$ }
+        { "\href{https://doi.org/" doi * "}{" * swap$ * "}" * }
+      if$
+    }
+    if$
+}
+
 STRINGS  { bibinfo}
 INTEGERS { nameptr namesleft numnames }
 
@@ -924,6 +935,7 @@ FUNCTION {format.journal.pages}
     }
   if$
 }
+
 FUNCTION {format.vol.num.pages}
 { volume field.or.null
   duplicate$ empty$ 'skip$
@@ -933,6 +945,7 @@ FUNCTION {format.vol.num.pages}
   if$
   bolden
   format.journal.pages
+  doilink
 }
 
 FUNCTION {format.chapter.pages}
@@ -1144,12 +1157,13 @@ FUNCTION {format.organization.address}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
-  new.block
-  format.title "title" output.check
+  %new.block
+  %format.title "title" output.check
   new.block
   crossref missing$
     {
       journal
+      doilink
       "journal" bibinfo.check
       emphasize
       "journal" output.check
@@ -1161,8 +1175,8 @@ FUNCTION {article}
       format.pages output
     }
   if$
-  new.block
-  format.doi output
+  %new.block
+  %format.doi output
   %new.block
   %format.url output
   new.block
