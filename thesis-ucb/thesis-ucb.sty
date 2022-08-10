@@ -30,6 +30,7 @@
 \RequirePackage[toc,page]{appendix}					% appendix, goes in table of contents
 \RequirePackage{array}								% tabular environment in math mode
 \RequirePackage[backend=biber,						% biber backend
+				maxcitenames=4,						% max citation names before "et al." appears
 				citestyle=verbose,					% verbose citations in text (footnotes)
 				bibstyle=numeric,					% numeric ordering in bibliography
 				refsection=chapter]{biblatex}		% bibliography after every chapter
@@ -42,30 +43,30 @@
 \RequirePackage{csquotes}							% display quote environment
 \RequirePackage[nodayofweek]{datetime}				% format \today macro
 \RequirePackage{enumerate}							% lists
-%\RequirePackage{esvect} 							% vector arrows
 \RequirePackage{etoolbox}
 \RequirePackage{fancyhdr}							% top rule on each page
 \RequirePackage{float}								% position figures and captions
 \RequirePackage[T1]{fontenc}						% better glyph/accent encoding
 \RequirePackage{graphicx}							% include figures
 \RequirePackage[colorlinks=true,					% color links
-				citecolor=MidnightBlue,				% color for citations
+				citecolor=black,					% color for citations
 				linkcolor=BrickRed,					% color for links (sections, equations)
+				filecolor=green,
+				urlcolor=myDarkBlue,				% color for links (doi in bib)
 				breaklinks=true,					% allow links to break over lines
-				pdfauthor=Amaresh~Sahu,
-				pdftitle=derivations,
-				pdfsubject=PhD~Thesis,
+				%pdfauthor=Amaresh~Sahu,
+				%pdftitle=thesis-ucb,
 				%bookmarksopen,						% all bookmarks open in pdf index
 				bookmarksdepth=2]{hyperref}			% set depth of bookmarks in pdf index
 \RequirePackage{listings}							% algorithm & source code environment
 \RequirePackage{mathrsfs}							% \mathscr 
 \RequirePackage{mathtools}							% needed for \shortintertext command
 \RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{multirow}							% multi-row environment
 \RequirePackage{multicol}							% multiple columns, for symbol list
 \RequirePackage{perpage}							% reset footnotes on every page
 \RequirePackage{sectsty}							% center section headings
 \RequirePackage{setspace}							% set line spacing
-\RequirePackage{sidecap}							% side captions, should delete
 \RequirePackage{stmaryrd}							% \llbracket and \rrbracket
 \RequirePackage{subcaption}							% sub-figures in captions
 \RequirePackage{textgreek}							% Greek letters in bibliography
@@ -74,8 +75,10 @@
 \RequirePackage[fit]{truncate}						% truncate headers in fancyhdr
 \RequirePackage{verbatim}							% block comments, code display
 \RequirePackage{wrapfig}							% wrap text around smaller figures
-\RequirePackage[usenames,dvipsnames]{xcolor}		% load all latex colors
+\RequirePackage[dvipsnames]{xcolor}					% load all latex colors
+
 \RequirePackage{tikz}								% latex drawing, must be after xcolor
+\RequirePackage{bookmark}							% modify bookmark, must be after listings
 
 
 
@@ -86,11 +89,31 @@
 %% **************************************************************************** %%
 
 %% bibliography
-\addbibresource{content/refs.bib}
-\renewcommand\bibname{Bibliographical Notes}		% rename toc title
+\addbibresource{content/common/refs.bib}
+
+
+% alter formatting of all bibliography entries,
+% such that the title is linked to either the
+% doi (with priority) or the url
+%
+% from https://tex.stackexchange.com/a/48409
+
+\ExecuteBibliographyOptions{url=false}
+\ExecuteBibliographyOptions{doi=false}
+\newbibmacro{string+doiurl}[1]{%
+	\iffieldundef{doi}{%
+		\iffieldundef{url}{{#1}}{%
+			\href{\thefield{url}}{#1}%
+		}}{\href{https://doi.org/\thefield{doi}}{#1}}%
+}
+
+\DeclareFieldFormat{title}{\usebibmacro{string+doiurl}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection,inbook,thesis]{title}{%
+	\usebibmacro{string+doiurl}{\mkbibquote{#1}}%
+}
 
 % removes the word ``in'' before the journal
-\renewbibmacro{in:}{}
+\renewbibmacro{in:}{.}
 
 % bolds volume number
 \DeclareFieldFormat[article]{volume}{{\textbf{#1}}}
@@ -103,11 +126,11 @@
 
 
 %% path to figures
-%\graphicspath{{/path/to/figures/}{/path/to/more/figures/}}
+%\graphicspath{}
 
 
 %% custom commands
-\input{content/custom-commands.tex}
+\input{content/common/custom-commands.tex}
 
 
 %% date (\today) formatting
@@ -202,8 +225,28 @@
 
 %% part
 \renewcommand{\cftpartfont}{\hfil \large \bfseries Part }	% 'part' is bold and center
-\cftpagenumbersoff{part}									% no page numbers for 'part'
+\cftpagenumbersoff{part}									% center part in toc (??)
 
+% no page numbers for 'part'
+\makeatletter
+\renewcommand\part{%
+	\if@openright
+		\cleardoublepage
+	\else
+		\clearpage
+	\fi
+	% "plain" replaced by "empty"
+	\thispagestyle{empty}%
+	\if@twocolumn
+		\onecolumn
+		\@tempswatrue
+	\else
+		\@tempswafalse
+	\fi
+	\null\vfil
+	\secdef\@part\@spart%
+}
+\makeatother
 
 % set indents in the toc
 % from https://tex.stackexchange.com/a/157410
@@ -226,43 +269,55 @@
 
 %% **************************************************************************** %%
 %%																				%%
-%% 									Title Formatting							%%
-%%																				%%
-%% **************************************************************************** %%
-
-%% center chapter titles
-%\chapterfont{\centering}
-
-%% chapter 1, section 2 shows as ``2'' rather than ``1.2''
-%\renewcommand\thesection{\arabic{section}}
-
-
-
-%% **************************************************************************** %%
-%%																				%%
 %% 									Page Headers								%%
 %%																				%%
 %% **************************************************************************** %%
 
-%% use the same style as S. Chandrasekhar
+
 
 \pagestyle{fancy}
 
 % redefine how 'chapter' and 'section' enter in the heading
-\renewcommand{\chaptermark}[1]{\markboth{\textsc{#1}}{}}
-\renewcommand{\sectionmark}[1]{\markright{\textsc{#1}}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\textsc{\MakeLowercase{#1}}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsc{\MakeLowercase{#1}}}}
 
 % set width of header and footer lines to zero
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-%% customization
+%% customization (satisfying Berkeley requirements)
 \fancyhf{}							% clear all default fancy headers and footers
-\fancyhead[LE,RO]{\thepage}			% page numbers on outside
+\fancyhead[R]{\thepage}				% page number on top right corner
+\fancyhead[L]{%
+	\ifnum \value{chapter} > 0
+		Ch.\hspace{2pt}%
+		\thechapter%
+		\ifnum \thesection > 0
+			\hspace{4pt}%
+			\S\hspace{1pt}%
+			\thesection%
+		\fi
+	\fi
+}									% chapter and section number
 \fancyhead[CE]{\leftmark}			% chapter name in center of even pages
 \fancyhead[CO]{\rightmark}			% section name in center of odd pages
-\fancyhead[RE]{Ch.\ \thechapter}	% chapter number on right of even pages
-\fancyhead[LO]{\S\ \thesection}		% section number on left of odd pages
+
+
+%% define a new page style, with only page number
+%% currently only used for "list of important symbols"
+\fancypagestyle{symbols}{%
+	\fancyhf{}
+	\fancyhead[R]{\thepage}
+}
+
+
+%% define a new page style for the table of contents,
+%% for proper lower case use of small caps
+\fancypagestyle{toc}{%
+	\fancyhf{}
+	\fancyhead[R]{\thepage}
+	\fancyhead[C]{\textsc{contents}}
+}
 
 
 
@@ -293,13 +348,16 @@
 	\mathsection\or					% 4
 	\sharp\or						% 5
 	\|\or							% 6
-	\mathparagraph\or				% 7
-	\ddagger\ddagger\or				% 8
-	\dagger\dagger\or				% 9
-	**\or							% 10
-	\mathsection\mathsection\or		% 11
-	\sharp\sharp\or					% 12
-	\|\|\or							% 13
+	\forall\or						% 7
+	\diamondsuit\or					% 8
+	\$\or							% 9
+	\&\or							% 10
+	\mathparagraph\or				% 11
+	\ddagger\ddagger\or				% 12
+	\dagger\dagger\or				% 13
+	**\or							% 14
+	\mathsection\mathsection\or		% 15
+	\sharp\sharp\or					% 16
 	\else\@ctrerr\fi}}
 \makeatother
 
@@ -352,15 +410,34 @@
 
 %% **************************************************************************** %%
 %%																				%%
+%% 								   Visual Formatting							%%
+%%																				%%
+%% **************************************************************************** %%
+
+% custom colors
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{myCyan}{rgb}{0.0,0.47,0.75}
+
+\colorlet{myBlue}{blue!70!green}
+\colorlet{myDarkBlue}{blue!81!black}
+\colorlet{myOrange}{red!60!yellow}
+\colorlet{myRed}{orange!40!purple}
+\colorlet{myGreen}{green!60!blue}
+\colorlet{myPurple}{red!60!blue}
+
+
+
+
+%% **************************************************************************** %%
+%%																				%%
 %% 								  Algorithm Formatting							%%
 %%																				%%
 %% **************************************************************************** %%
 
 % color code snippets with the lstlisting environment
 % from https://stackoverflow.com/a/3175141
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \renewcommand{\lstlistingname}{Algorithm}
 \lstset{frame=shadowbox,
@@ -407,7 +484,7 @@
 	% no line around box
 	linewidth=0pt,
 	% shade box grey
-	backgroundcolor=gray!20
+	backgroundcolor=gray!10
 }
 
 %% set up a counter

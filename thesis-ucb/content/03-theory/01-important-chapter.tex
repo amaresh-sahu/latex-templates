@@ -16,20 +16,20 @@
 		How then is it possible to extend these results to dissipative systems?
 		What part of the energy flow may be used to create and maintain some
 		structure in such systems?
-	}\\
-	\rule{0mm}{1pt}\hfill---Ilya R.\ Prigogine~\footcite{prigogine}
+	}\\[4pt]
+	\rule{0mm}{1pt}\hfill---\textsc{Ilya R.\ Prigogine}, 1955\footcite{prigogine}
 \end{displayquote}
 
-I often like to begin thesis chapters with a quote.
+I like to begin thesis chapters with a quote.
 Note that if you use the \verb+\footcite{}+ command, then the citation will appear as a footnote, and will also be reported \textit{at the end of each chapter.}
-For this reason, the file \verb+bib.tex+ should be included after every chapter in the file \verb+thesis.tex+ with the command \verb+\input{content/bib}+.
+For this reason, the file \verb+bib.tex+ should be included after every chapter in the file \verb+thesis-ucb.tex+ with the command \verb+\input{content/common/bib}+.
 You can also use the \verb+\footnote{}+ command, and then the \verb+\cite{}+ command within the footnote, as in the following example which produces the footnote below:%
-\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}}
+\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}.}
 \\[8pt]
-\verb+\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}}+
+\verb+\footnote{Consider the scaling analysis by \cite{sahu-mandadapu-pre-2020}.}+
 \\[8pt]
 Note that you can include arXiv links in your citations!
-The bibliography is compiled by running the command \verb+biber thesis.bcf+ in the command line.
+The bibliography is compiled by running the command \verb+biber thesis-ucb.bcf+ in the command line.
 
 
 
@@ -39,7 +39,7 @@ The bibliography is compiled by running the command \verb+biber thesis.bcf+ in t
 
 \section{The equation environment} \label{sec_equation_environment}
 
-Many custom commands are provided in the \verb+custom-commands.tex+ file.
+Some custom commands are provided in the \verb+content/common/custom-commands.tex+ file.
 The following equation was obtained by writing
 \verb+\bmnabla \bmcdot \bmv \, = \, 0 ~.+
 \begin{equation}
@@ -102,7 +102,7 @@ You can construct an `Example' environment (currently, this can handle page brea
  }
 \end{lstlisting}
 
-\noindent Both the example and algorithm environments can be modified in the \texttt{thesis.sty} file.
+\noindent Both the example and algorithm environments can be modified in the \texttt{thesis-ucb.sty} file.
 \newpage
 
 

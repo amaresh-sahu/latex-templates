@@ -1,0 +1,105 @@
+\documentclass[12pt,openany]{book}
+\usepackage{thesis-ucb} % all style formatting in thesis-ucb.sty
+
+
+
+
+
+
+% ***************************************** %
+%											%
+%				START DOCUMENT 				%
+%											%
+% ***************************************** %
+
+\allowdisplaybreaks
+\begin{document}
+
+
+
+% ***************************************** %
+%											%
+%				FRONT MATTER				%
+%											%
+% ***************************************** %
+
+\frontmatter
+\pagestyle{empty}
+
+
+
+% *** Thesis Page *** %
+\input{content/01-front-matter/01-thesis-page}
+
+% *** Copyright Page *** %
+\newpage
+\input{content/01-front-matter/02-copyright-page}
+
+% *** Abstract *** %
+\newpage
+\pagestyle{fancy}
+\phantomsection
+% Berkeley's idiotic numbering scheme
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\normalsize
+\addcontentsline{toc}{chapter}{Abstract}
+\input{content/01-front-matter/03-abstract}
+
+% *** Acknowledgments *** %
+\newpage
+\phantomsection
+\pagenumbering{roman}
+\setcounter{page}{1}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+\input{content/01-front-matter/04-acknowledgments}
+
+% *** Dedication *** %
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Dedication}
+\input{content/01-front-matter/05-dedication}
+
+
+
+\newpage
+\phantomsection
+% *** Table of Contents *** %
+\addcontentsline{toc}{chapter}{Contents}
+\begingroup%
+\pagestyle{toc}%
+{ \hypersetup{ linkcolor=Black, citecolor=Black } \tableofcontents }%
+\endgroup
+%\thispagestyle{toc}	% <--- UN-COMMENT IF YOUR TOC IS MORE THAN ONE PAGE!!!!
+
+
+
+% ***************************************** %
+%											%
+%				  MAIN MATTER				%
+%											%
+% ***************************************** %
+
+\newpage
+\thispagestyle{empty}
+\mainmatter
+\pagestyle{fancy}
+\normalsize
+
+
+
+% *** Introduction *** %
+\input{content/02-introduction/01-introduction}
+
+
+
+% *** Theory *** %
+\part{Theory} \label{part_theory}
+
+	% *** Important Chapter *** %
+	\input{content/03-theory/01-important-chapter}
+	\input{content/common/bib}
+
+
+
+\end{document}
