@@ -37,7 +37,6 @@
 \RequirePackage{dcolumn}							% align decimal point in table columns
 \RequirePackage{enumerate}							% lists
 \RequirePackage{float}								% position figures and captions
-\RequirePackage[T1]{fontenc}						% 8-bit font encoding: glyphs, accents
 \RequirePackage{graphicx}							% include figures
 \RequirePackage[colorlinks=true,					% color links
 				citecolor=MidnightBlue,				% color for citations
@@ -55,6 +54,7 @@
 \RequirePackage{mathtools}							% needed for \shortintertext command
 \RequirePackage{multicol}							% multi-column environment
 \RequirePackage{mdframed}							% frames and boxes around text
+\RequirePackage{perpage}							% reset footnote numbers on each page
 \RequirePackage{sectsty}							% center section headings
 \RequirePackage{stmaryrd}							% \llbracket and \rrbracket
 \RequirePackage{subcaption}							% sub-figures in captions
@@ -142,15 +142,20 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 
+% reset footnote counter on each page
+% from https://tex.stackexchange.com/questions/1656/
+\MakePerPage{footnote}
+
+
 % change the order of footnote characters
 % from https://tex.stackexchange.com/a/78223
 \makeatletter
 \def\@fnsymbol#1{
 	\ensuremath{\ifcase#1\or
 	\ddagger\or			% 1
-	\mathsection\or		% 2
-	\mathflat\or		% 3
-	\dagger\or			% 4
+	\dagger\or			% 2
+	\mathsection\or		% 3
+	\mathflat\or		% 4
 	*\or				% 5
 	\|\or				% 6
 	\ddagger\ddagger\or	% 7

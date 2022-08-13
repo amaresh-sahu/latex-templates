@@ -647,6 +647,17 @@ FUNCTION {format.doi}
   if$
 }
 
+FUNCTION {doilink}
+{ duplicate$ empty$
+    { pop$ "" }
+    { doi empty$
+        { skip$ }
+        { "\href{https://doi.org/" doi * "}{" * swap$ * "}" * }
+      if$
+    }
+    if$
+}
+
 STRINGS  { bibinfo}
 INTEGERS { nameptr namesleft numnames }
 
@@ -1146,6 +1157,7 @@ FUNCTION {article}
   format.authors "author" output.check
   new.block
   format.title "title" output.check
+  doilink
   new.block
   crossref missing$
     {
@@ -1161,8 +1173,8 @@ FUNCTION {article}
       format.pages output
     }
   if$
-  new.block
-  format.doi output
+  %new.block
+  %format.doi output
   %new.block
   %format.url output
   new.block
